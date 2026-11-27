@@ -2,6 +2,16 @@
 
 Công cụ quản lý nhập – xuất – tồn bia bằng tiếng Việt. **Mở `index.html` bằng Chrome, Edge hoặc Firefox để sử dụng ngay.** Không cần cài đặt, tài khoản, backend, database hay kết nối Internet.
 
+## Website trực tuyến
+
+Địa chỉ GitHub Pages: **https://lekhanhdat.github.io/Beer/**
+
+Workflow [Deploy Kho Bia to GitHub Pages](https://github.com/lekhanhdat/Beer/actions/workflows/deploy-pages.yml) tự chạy khi push vào `main`, hoặc có thể chạy bằng **Run workflow** trong tab Actions. Workflow kiểm tra tính toán tồn kho trước khi triển khai, rồi chỉ phát hành `index.html`. Không cần cấu hình secret hay bước build ứng dụng.
+
+Thiết lập GitHub Pages dùng **Settings → Pages → Build and deployment → Source: GitHub Actions**. Cấu hình nằm trong `.github/workflows/deploy-pages.yml`, theo [hướng dẫn GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
+
+**Khi chuyển từ file trên máy sang website:** xuất JSON ở bản cũ, mở website rồi khôi phục JSON. LocalStorage của file cục bộ và website là hai vùng riêng biệt; dữ liệu không tự chuyển sang. Website công khai nhưng dữ liệu kho vẫn lưu riêng trên từng trình duyệt, không được gửi lên GitHub.
+
 ## Sử dụng nhanh
 
 1. Vào **Danh mục bia → Thêm loại bia**. Nhập tên, số thùng có sẵn và ngày bắt đầu theo dõi. Nếu muốn bổ sung phiếu cũ, chọn ngày bắt đầu không muộn hơn phiếu cũ nhất.
