@@ -22,6 +22,7 @@ async (page) => {
     await page.locator('[data-new-type="' + type + '"]').first().click();
     if (await page.locator('#confirm-dialog').isVisible()) await confirm();
     await page.locator('#transaction-date').fill(date);
+    await page.locator('#transaction-operator').fill('Minh');
     for (let n = 0; n < items.length; n++) {
       if (n) await page.locator('#add-item').click();
       await page.locator('.item-product').nth(n).selectOption({ label: items[n][0] });
@@ -56,7 +57,7 @@ async (page) => {
   check((await content('total-stock')).trim() === '13 thùng', 'Tồn quá khứ có cả tồn Heineken đầu kỳ');
   await page.locator('#snapshot-date').fill('2026-11-13');
   await page.locator('#snapshot-date').dispatchEvent('change');
-  check((await content('daily-out')).trim() === '8 thùng', 'Xuất trong ngày đúng 8 thùng');
+  check((await content('monthly-out')).trim() === '8 thùng', 'Xuất lũy kế tháng đến ngày chọn đúng 8 thùng');
   check((await content('total-stock')).trim() === '5 thùng', 'Tồn ngày 13 đúng 5 thùng');
   await page.reload();
   check((await content('total-stock')).trim() === '19 thùng', 'LocalStorage giữ dữ liệu sau tải lại');

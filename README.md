@@ -15,14 +15,16 @@ Thiết lập GitHub Pages dùng **Settings → Pages → Build and deployment �
 ## Sử dụng nhanh
 
 1. Vào **Danh mục bia → Thêm loại bia**. Nhập tên, số thùng có sẵn và ngày bắt đầu theo dõi. Nếu muốn bổ sung phiếu cũ, chọn ngày bắt đầu không muộn hơn phiếu cũ nhất.
-2. Ở **Tổng quan**, chọn **Nhập kho** hoặc **Xuất kho**, nhập ngày, loại bia, số thùng và ghi chú nếu cần. Dùng **Thêm loại bia** trong phiếu để nhập nhiều dòng, rồi bấm **Lưu phiếu**.
-3. Chọn **Xem tồn ngày** để xem tồn cuối một ngày cụ thể. Các ô Nhập/Xuất trong ngày cũng theo ngày đã chọn; bấm **Hôm nay** để quay lại ngày hiện tại.
+2. Ở **Tổng quan**, chọn **Nhập kho** hoặc **Xuất kho**, nhập ngày, **tên người thực hiện**, loại bia, số lượng và đơn vị **Thùng/Lon**. Ví dụ khách uống 10 lon: chọn Xuất kho, số lượng 10, đơn vị Lon. Dùng **Thêm loại bia** để nhập nhiều dòng, rồi bấm **Lưu phiếu**.
+3. Chọn **Xem tồn ngày** để xem tồn cuối một ngày cụ thể. Hai ô **Nhập/Xuất trong tháng** tính lũy kế từ ngày 1 của tháng đến hết ngày đã chọn, không tính tồn đầu kỳ. Bấm **Hôm nay** để quay lại ngày hiện tại.
 4. Vào **Lịch sử nhập xuất** để lọc theo khoảng ngày, loại bia hoặc hình thức. Muốn lọc một ngày, đặt Từ ngày và Đến ngày giống nhau. Sửa hoặc xóa một dòng sẽ tác động đến **toàn bộ phiếu** có dòng đó.
-5. Cuối ngày vào **Sao lưu dữ liệu → Tải bản sao JSON**. Để chuyển máy hoặc khôi phục, chọn file JSON và kiểm tra tóm tắt trước khi xác nhận thay thế dữ liệu.
+5. Quản lý bấm **Xem & xác nhận**, chọn Từ ngày/Đến hết ngày, xem các phiếu và nhập tên người chịu trách nhiệm. Có thể chọn một ngày hoặc gộp hai, nhiều ngày còn thiếu. Bấm **Xác nhận đã xem** để lưu mốc.
+6. Cuối ngày vào **Sao lưu dữ liệu → Tải bản sao JSON**. Bản sao gồm cả tên nhân viên, đơn vị lon/thùng và lịch sử xác nhận. Để chuyển máy hoặc khôi phục, chọn file JSON và kiểm tra tóm tắt trước khi xác nhận thay thế dữ liệu.
 
 ## Quy tắc tính tồn
 
-- Đơn vị: **thùng**, số nguyên; giao dịch phải lớn hơn 0, tồn đầu kỳ có thể bằng 0.
+- **24 lon = 1 thùng**, áp dụng cho mọi loại bia. Mỗi dòng phiếu chọn Thùng hoặc Lon với số lượng nguyên dương; tồn đầu kỳ vẫn khai báo bằng thùng nguyên và có thể bằng 0.
+- Tính toán nội bộ bằng số lon nguyên để không bị sai số. Số tồn và thống kê hiển thị số thùng nguyên kèm lon dư; ví dụ 1 thùng xuất 10 lon còn **14 lon**, 2 thùng xuất 10 lon còn **1 thùng 14 lon**. Lịch sử giữ đơn vị đã nhập trên từng dòng.
 - Tồn cuối ngày = tồn đầu kỳ có hiệu lực + tổng nhập − tổng xuất đến hết ngày đó.
 - Tồn đầu kỳ được tính từ **Ngày bắt đầu**, trước mọi phiếu cùng ngày, và không được tính vào số thùng nhập trong ngày.
 - Phiếu không có giờ: cùng ngày, tất cả nhập được tính trước tất cả xuất. Đây là sổ theo ngày, không phải sổ theo giờ.
@@ -32,12 +34,20 @@ Thiết lập GitHub Pages dùng **Settings → Pages → Build and deployment �
 
 Ví dụ: Tiger nhập 10 ngày 12/11, xuất 5 ngày 13/11, nhập thêm 14 ngày 15/11 → còn **19 thùng**. Heineken phải có ít nhất 3 thùng đầu kỳ hoặc phiếu nhập trước khi xuất 3 thùng.
 
+## Mốc quản lý đã xem
+
+- Mỗi mốc lưu khoảng ngày (bao gồm cả hai đầu), tên người xác nhận, thời điểm xác nhận và nội dung phiếu đã xem. Không cho xác nhận trước ngày tương lai; có thể xác nhận một ngày không phát sinh giao dịch.
+- Lịch sử nhập xuất hiển thị **Đã xác nhận** kèm tên quản lý cho các phiếu được một mốc còn hiệu lực bao phủ.
+- Sửa số lượng/đơn vị/người thực hiện/ghi chú/ngày giao dịch, đổi tên bia, thêm phiếu lùi ngày hoặc xóa phiếu sẽ làm những mốc có nội dung thay đổi báo **Cần xem lại**. Cả khoảng của mốc đó cần xác nhận lại; mốc cũ vẫn được giữ để tra cứu. Phiếu ngoài khoảng ngày không ảnh hưởng đến mốc.
+- Mốc này xác nhận các phiếu đã xem, không phải biên bản kiểm kê tồn thực tế và không khóa chỉnh sửa. Đây là tên nhập bằng văn bản, không có tài khoản hay phân quyền. Quản lý xem trên cùng trình duyệt hoặc nhận bản sao JSON mới nhất để xem ở thiết bị khác.
+
 ## Lưu trữ và sao lưu
 
 - Dữ liệu lưu bằng LocalStorage, trên **trình duyệt và địa chỉ đang mở**. Tải lại trang hoặc đóng trình duyệt thông thường vẫn giữ dữ liệu đã lưu.
 - Giữ file ở đường dẫn cố định, dùng cùng một trình duyệt. Nếu đổi đường dẫn, đổi trình duyệt, đổi địa chỉ web hoặc chuyển máy, hãy xuất JSON trước rồi nhập lại ở nơi mới. Dữ liệu không tự đồng bộ.
 - Tránh chế độ ẩn danh. Xóa dữ liệu trình duyệt có thể xóa sổ kho. **Nên sao lưu JSON hằng ngày.**
 - Khôi phục JSON thay thế toàn bộ kho, không gộp dữ liệu. Chỉ file đúng phiên bản và có lịch sử không âm tồn mới được chấp nhận. Giới hạn file nhập 20 MB; giới hạn thực tế lưu trữ phụ thuộc trình duyệt.
+- Dữ liệu và JSON phiên bản 1 cũ vẫn đọc được: các số lượng cũ được hiểu là thùng, tên người thực hiện để trống và chưa có mốc xác nhận. Ứng dụng giữ nguyên khóa LocalStorage, chuyển sang phiên bản 2 khi lưu thành công; không nhân quy đổi lần thứ hai khi tải lại. JSON xuất mới dùng phiên bản 2. Nên tải bản sao trước khi cập nhật và tải lại các tab cũ trước khi tiếp tục nhập liệu.
 - CSV có UTF-8 BOM, giữ tiếng Việt và mở được bằng Excel. Nút **Xuất CSV** trong Lịch sử xuất các dòng theo bộ lọc; nút trong Sao lưu xuất toàn bộ lịch sử. Nếu Excel không tự tách cột, dùng **Data → From Text/CSV**, chọn UTF-8 và dấu phẩy. CSV không dùng để khôi phục kho.
 - Nếu ghi thất bại do hết bộ nhớ/quyền truy cập, ứng dụng báo lỗi và giữ nội dung chưa lưu. Nếu dữ liệu gốc bị lỗi, ứng dụng khóa ghi, cho tải nguyên bản và khôi phục từ JSON hợp lệ.
 - Các tab cùng địa chỉ nhận cập nhật qua sự kiện storage; phiếu đang nhập được giữ lại. Nên dùng một tab để thao tác. Công cụ này dành cho một người trên thiết bị, không phải hệ thống cộng tác nhiều người.
@@ -63,6 +73,7 @@ New-Item -ItemType Directory -Force output/playwright
 npx --yes --package @playwright/cli playwright-cli -s=beer open http://127.0.0.1:8765 --headed
 npx --yes --package @playwright/cli playwright-cli -s=beer run-code --filename tests/browser-qa.js
 npx --yes --package @playwright/cli playwright-cli -s=beer run-code --filename tests/browser-edge-qa.js
+npx --yes --package @playwright/cli playwright-cli -s=beer run-code --filename tests/browser-features-qa.js
 npx --yes --package @playwright/cli playwright-cli -s=beer close
 ```
 
@@ -70,4 +81,4 @@ npx --yes --package @playwright/cli playwright-cli -s=beer close
 
 Các mốc triển khai được commit và push lên nhánh `main` của [lekhanhdat/Beer](https://github.com/lekhanhdat/Beer).
 
-Kết quả kiểm tra bản bàn giao: **13 kiểm thử logic và 55 kiểm tra trên Chromium đều đạt**. Đã kiểm tra bố cục 1440px, 390px, 320px; lưu sau tải lại; phiếu nhiều loại; tồn quá khứ/tương lai; sửa/xóa; CSV/JSON; lỗi bộ nhớ; dữ liệu hỏng và cập nhật giữa các tab. Giao diện tiếng Việt đã được kiểm tra bằng ảnh màn hình. Chưa kiểm thử trên thiết bị iOS/Android thật hoặc các trình duyệt khác.
+Kết quả kiểm tra bản cập nhật: **23 kiểm thử logic và 84 kiểm tra trên Chromium đều đạt**. Đã kiểm tra bố cục 1440px, 390px, 320px; lưu sau tải lại; phiếu nhiều loại; tồn quá khứ/tương lai; sửa/xóa; CSV/JSON; lỗi bộ nhớ; dữ liệu hỏng; cập nhật giữa các tab; chuyển dữ liệu cũ; xuất lon; lũy kế tháng và xác nhận nhiều ngày. Giao diện tiếng Việt đã được kiểm tra bằng ảnh màn hình. Chưa kiểm thử trên thiết bị iOS/Android thật hoặc các trình duyệt khác.

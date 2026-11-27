@@ -25,6 +25,10 @@
     @media(max-width:800px){.topbar-inner{flex-wrap:wrap;gap:0;padding:16px 20px 0;min-height:auto}.brand{margin-bottom:15px}.brand-sub{display:none}.local-status{margin-bottom:15px}.local-status span{display:inline}.tabs{order:3;width:100%;justify-content:space-between;gap:12px;overflow:auto;min-height:48px}.tab{font-size:.875rem;padding-bottom:12px}.workspace{padding:26px 20px 20px}.overview-grid{grid-template-columns:1fr}.quick-panel{grid-row:1}.quick-panel .panel-body{padding:20px}.quick-panel .type-toggle{margin-bottom:16px}.stats{gap:12px;grid-template-columns:1fr 1fr}.stat.total{grid-column:1/-1}.stat-value{font-size:2.25rem}.stat.total .stat-value{font-size:3rem}.stat{padding:20px}.stat-caption{font-size:.75rem}.page-heading{align-items:flex-start}.heading-actions .btn{padding:10px 12px}.heading-actions .btn svg{display:none}h1{font-size:1.75rem}.backup-grid{grid-template-columns:1fr}.stock-table th:nth-child(3),.stock-table td:nth-child(3){display:none}.stock-table td{padding-top:14px;padding-bottom:14px}.summary-toolbar{align-items:flex-start;flex-wrap:wrap}.recent-note{display:none}.quick-panel .field-row{grid-template-columns:1fr}.quick-panel #transaction-note{min-height:60px}footer{flex-direction:column;gap:7px;padding-top:24px}.date-control{flex-wrap:wrap}.date-control input{width:155px}.backup-info{padding:20px}.backup-info ul{line-height:1.7}}
     @media(max-width:480px){.workspace{padding-left:14px;padding-right:14px}.topbar-inner{padding-left:16px;padding-right:16px}.page-heading{flex-direction:column;gap:16px;margin-bottom:22px}.heading-actions{width:100%}.heading-actions .btn{flex:1}.stats{gap:10px}.stat{padding:16px}.stat-label{font-size:.8125rem;gap:6px}.stat-icon{width:27px;height:27px}.stat-value{font-size:2rem}.stat-caption{line-height:1.5}.summary-toolbar>p{display:none}.stock-table th,.stock-table td{padding-left:16px;padding-right:16px}.beer-name{gap:9px}.beer-mark{width:32px;height:32px;border-radius:8px}.stock-quantity{font-size:1.25rem}.unit{display:block;margin-left:0;font-size:.75rem}.recent-table th,.recent-table td{padding-left:14px;padding-right:14px}.recent-table .beer-name{min-width:100px}.recent-table .beer-mark{display:none}.filters{padding:16px;gap:10px}.filters input,.filters select{font-size:.875rem;padding-left:9px}.panel-head{padding:17px 16px}.panel-head .btn{font-size:.8125rem}.stock-foot{padding:12px 16px;font-size:.75rem}.pagination{padding:14px 16px;flex-wrap:wrap}.field-row{grid-template-columns:1fr}.dialog-body{padding:20px}.dialog-head{padding:18px 20px}.dialog-actions{padding:16px 20px}.local-status{font-size:.75rem}.local-status span{display:none}.notes-cell{max-width:220px}}
     @media(prefers-reduced-motion:no-preference){.btn,.icon-btn{transition:background .15s,color .15s}}
+    .overview-grid{grid-template-columns:minmax(0,1fr) 430px}.stats{grid-template-columns:1.15fr 1fr 1fr}.stat-value{font-size:2.5rem}.stock-quantity{font-size:1.125rem}.review-panel{margin-bottom:24px}.review-panel .panel-head{border-bottom:0}.review-details{border-top:1px solid var(--line)}.review-details summary{padding:13px 24px;cursor:pointer;font-size:.875rem;color:var(--green);font-weight:600}.review-entry{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:13px 24px;border-top:1px solid var(--line);font-size:.875rem}.review-entry p{margin-top:4px;font-size:.8125rem;color:var(--muted)}.item-row{grid-template-columns:minmax(0,1fr) 100px 30px;gap:8px;padding:12px;border:1px solid var(--line);border-radius:10px;background:#fafcf9;margin-bottom:12px}.item-row .item-product{grid-column:1/-1}.item-row .item-unit{padding-left:9px}.item-row .item-quantity{text-align:left;padding-left:12px}.line-help{margin-top:0}.stock-quantity,.stat-value{overflow-wrap:anywhere}.person-cell{min-width:130px;max-width:180px;overflow-wrap:anywhere}.history-table{min-width:1120px}.recent-person{font-size:.75rem;color:var(--muted);margin-top:3px}#review-dialog{width:min(920px,calc(100% - 32px))}#review-preview{max-height:360px;border:1px solid var(--line);border-radius:8px}#review-preview table{min-width:650px}#review-preview thead{position:sticky;top:0}.review-panel .count{white-space:nowrap}.review-panel .btn{flex-shrink:0}.stat-value span{white-space:nowrap}
+    @media(max-width:1100px){.overview-grid{grid-template-columns:minmax(0,1fr) 370px}.stat-value{font-size:2rem}}
+    @media(max-width:800px){.overview-grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.quick-panel{grid-row:auto}.stat.total .stat-value{font-size:2.5rem}.review-panel .panel-head{align-items:flex-start}.review-panel .count{display:table;margin:6px 0}.review-panel .btn svg{display:none}}
+    @media(max-width:480px){.review-panel .panel-head{flex-direction:column}.review-panel .btn{width:100%}.review-details summary,.review-entry{padding-left:16px;padding-right:16px}.stat-value{font-size:1.75rem}.stat-value span{font-size:.8125rem}.item-row{grid-template-columns:minmax(0,1fr) 92px 30px;padding:10px}.review-panel{margin-bottom:18px}}
   </style>
 </head>
 <body>
@@ -59,11 +63,12 @@
       <div class="summary-toolbar"><p id="snapshot-caption">Số liệu tồn kho cuối ngày</p><div class="date-control"><label for="snapshot-date" style="margin:0;font-weight:400">Xem tồn ngày</label><input id="snapshot-date" type="date" min="1900-01-01" max="9999-12-31" required><button class="btn compact" id="snapshot-today">Hôm nay</button></div></div>
       <div class="stats" aria-live="polite">
         <article class="stat total"><div class="stat-label"><span class="stat-icon"><svg class="icon"><use href="#i-box"/></svg></span>Tổng tồn kho</div><div class="stat-value num" id="total-stock">0 <span>thùng</span></div><p class="stat-caption" id="total-caption">Số dư cuối ngày</p></article>
-        <article class="stat"><div class="stat-label"><span class="stat-icon"><svg class="icon"><use href="#i-plus"/></svg></span><span id="incoming-label">Nhập trong ngày</span></div><div class="stat-value num" id="daily-in">0 <span>thùng</span></div><p class="stat-caption" id="incoming-caption">Chưa có phiếu nhập</p></article>
-        <article class="stat out"><div class="stat-label"><span class="stat-icon"><svg class="icon"><use href="#i-minus"/></svg></span><span id="outgoing-label">Xuất trong ngày</span></div><div class="stat-value num" id="daily-out">0 <span>thùng</span></div><p class="stat-caption" id="outgoing-caption">Chưa có phiếu xuất</p></article>
+        <article class="stat"><div class="stat-label"><span class="stat-icon"><svg class="icon"><use href="#i-plus"/></svg></span><span id="incoming-label">Nhập trong tháng</span></div><div class="stat-value num" id="monthly-in">0 <span>thùng</span></div><p class="stat-caption" id="incoming-caption">Tính từ ngày 1</p></article>
+        <article class="stat out"><div class="stat-label"><span class="stat-icon"><svg class="icon"><use href="#i-minus"/></svg></span><span id="outgoing-label">Xuất trong tháng</span></div><div class="stat-value num" id="monthly-out">0 <span>thùng</span></div><p class="stat-caption" id="outgoing-caption">Tính từ ngày 1</p></article>
       </div>
+      <section class="panel review-panel" aria-label="Xác nhận nhập xuất"><div class="panel-head"><div><h2>Xác nhận nhập xuất <span class="count" id="review-pending"></span></h2><p id="review-summary">Đánh dấu khoảng ngày quản lý đã xem lại.</p></div><button class="btn primary" id="open-review"><svg class="icon"><use href="#i-shield"/></svg>Xem & xác nhận</button></div><details class="review-details"><summary id="review-history-label">Lịch sử xác nhận</summary><div id="review-list"></div></details></section>
       <div class="overview-grid"><div class="left-column">
-        <section class="panel"><div class="panel-head"><div><h2>Tồn kho theo loại bia <span class="count" id="product-count">0 loại</span></h2><p id="stock-date-caption">Đơn vị tính: thùng</p></div><button class="btn link" data-go="catalog">Quản lý danh mục</button></div><div id="stock-list"></div><div class="stock-foot"><svg class="icon"><use href="#i-info"/></svg>Tồn = tồn đầu kỳ + tổng nhập − tổng xuất đến ngày đã chọn.</div></section>
+        <section class="panel"><div class="panel-head"><div><h2>Tồn kho theo loại bia <span class="count" id="product-count">0 loại</span></h2><p id="stock-date-caption">Đơn vị tính: thùng</p></div><button class="btn link" data-go="catalog">Quản lý danh mục</button></div><div id="stock-list"></div><div class="stock-foot"><svg class="icon"><use href="#i-info"/></svg>Tồn đầu kỳ + nhập − xuất · Quy đổi 24 lon = 1 thùng.</div></section>
         <section class="panel"><div class="panel-head"><div><h2>Giao dịch gần đây</h2><p>5 phiếu mới nhất theo ngày giao dịch</p></div><button class="btn link" data-go="history">Xem tất cả</button></div><div id="recent-list"></div></section>
       </div>
       <aside class="panel quick-panel" id="quick-panel" aria-label="Tạo phiếu nhập xuất"><div class="panel-head"><div><h2 id="editor-title">Tạo phiếu nhanh</h2><p id="editor-subtitle">Nhập nhiều loại bia trong một lần</p></div><span class="stat-icon"><svg class="icon"><use href="#i-file"/></svg></span></div><div class="panel-body">
@@ -71,8 +76,9 @@
           <div class="type-toggle" aria-label="Hình thức giao dịch"><button type="button" class="type-btn" data-type="in" aria-pressed="true"><svg class="icon"><use href="#i-plus"/></svg>Nhập kho</button><button type="button" class="type-btn out" data-type="out" aria-pressed="false"><svg class="icon"><use href="#i-minus"/></svg>Xuất kho</button></div>
           <div id="transaction-error" class="form-error" role="alert" hidden></div>
           <div class="field"><label for="transaction-date">Ngày giao dịch</label><input type="date" id="transaction-date" min="1900-01-01" max="9999-12-31" required><p class="field-hint" id="transaction-date-hint">Có thể chọn ngày trước đó để bổ sung sổ kho.</p></div>
+          <div class="field"><label for="transaction-operator">Người thực hiện nhập / xuất</label><input id="transaction-operator" type="text" maxlength="80" required placeholder="Ví dụ: Anh Minh" autocomplete="name"></div>
           <div id="no-products" class="notice" hidden>Thêm loại bia vào danh mục để bắt đầu.<br><button type="button" class="btn link" id="add-first-product">Thêm loại bia</button></div>
-          <div class="item-labels"><span>Loại bia</span><span>Số thùng</span><span></span></div><div id="transaction-items"></div>
+          <label>Loại bia, số lượng & đơn vị</label><p class="field-hint" style="margin:0 0 10px">24 lon = 1 thùng. Chọn “Lon” khi xuất lẻ.</p><div id="transaction-items"></div>
           <button class="btn link add-line" id="add-item" type="button"><svg class="icon"><use href="#i-plus"/></svg>Thêm loại bia</button>
           <div class="field"><label for="transaction-note">Ghi chú <span class="optional">(không bắt buộc)</span></label><textarea id="transaction-note" rows="2" maxlength="1000" placeholder="Ví dụ: Nhập bổ sung đầu tuần..."></textarea></div>
           <div class="editor-summary"><span>Tổng số lượng</span><strong class="num" id="editor-total">0 thùng</strong></div>
@@ -91,20 +97,22 @@
     </section>
     <section id="page-backup" aria-label="Sao lưu dữ liệu" hidden>
       <div class="page-heading"><div><p class="eyebrow">DỮ LIỆU CỦA BẠN</p><h1>Sao lưu & khôi phục</h1><p class="subtitle">Giữ một bản sao an toàn, chuyển kho sang thiết bị khác dễ dàng.</p></div></div>
-      <div class="backup-grid"><section class="panel backup-card"><div class="panel-body"><div class="backup-icon"><svg class="icon"><use href="#i-save"/></svg></div><h2>Sao lưu toàn bộ kho</h2><p>Tải file JSON chứa danh mục bia, tồn đầu kỳ và toàn bộ phiếu nhập xuất. Dùng file này để khôi phục đầy đủ.</p><button class="btn primary" id="export-json">Tải bản sao JSON</button><p class="small" id="backup-summary" style="margin:12px 0 0"></p><p class="small" id="last-backup" style="margin:6px 0 0"></p></div></section><section class="panel backup-card"><div class="panel-body"><div class="backup-icon"><svg class="icon"><use href="#i-file"/></svg></div><h2>Khôi phục từ bản sao</h2><p>Chọn file JSON đã xuất từ Kho Bia. Hệ thống sẽ kiểm tra dữ liệu và số tồn trước khi cho phép khôi phục.</p><button class="btn" id="import-json">Chọn file JSON</button><input type="file" id="import-file" accept=".json,application/json" hidden><p class="small" style="margin:12px 0 0">Khôi phục sẽ thay thế toàn bộ dữ liệu hiện có. Hãy sao lưu trước khi thực hiện.</p></div></section></div>
+      <div class="backup-grid"><section class="panel backup-card"><div class="panel-body"><div class="backup-icon"><svg class="icon"><use href="#i-save"/></svg></div><h2>Sao lưu toàn bộ kho</h2><p>Tải file JSON chứa danh mục bia, tồn đầu kỳ, phiếu nhập xuất và lịch sử xác nhận. Dùng file này để khôi phục đầy đủ.</p><button class="btn primary" id="export-json">Tải bản sao JSON</button><p class="small" id="backup-summary" style="margin:12px 0 0"></p><p class="small" id="last-backup" style="margin:6px 0 0"></p></div></section><section class="panel backup-card"><div class="panel-body"><div class="backup-icon"><svg class="icon"><use href="#i-file"/></svg></div><h2>Khôi phục từ bản sao</h2><p>Chọn file JSON đã xuất từ Kho Bia. Hệ thống sẽ kiểm tra dữ liệu và số tồn trước khi cho phép khôi phục.</p><button class="btn" id="import-json">Chọn file JSON</button><input type="file" id="import-file" accept=".json,application/json" hidden><p class="small" style="margin:12px 0 0">Khôi phục sẽ thay thế toàn bộ dữ liệu hiện có. Hãy sao lưu trước khi thực hiện.</p></div></section></div>
       <section class="panel backup-info"><svg class="icon"><use href="#i-shield"/></svg><div><h2>Dữ liệu lưu riêng trên trình duyệt của bạn</h2><p>Không cần tài khoản, không gửi dữ liệu kho lên máy chủ. Tải lại trang hay đóng trình duyệt thông thường vẫn giữ dữ liệu.</p><ul><li>Nên tải bản sao JSON sau mỗi ngày làm việc.</li><li>Xóa dữ liệu trình duyệt hoặc dùng chế độ ẩn danh có thể làm mất sổ kho.</li><li>Dữ liệu không tự đồng bộ giữa các trình duyệt hoặc thiết bị. Dùng JSON để chuyển dữ liệu.</li><li>CSV dành để xem trên Excel; JSON dành để khôi phục kho.</li></ul><button class="btn link" id="backup-csv" style="margin-top:14px">Xuất toàn bộ lịch sử CSV</button></div></section>
     </section>
     <footer><span>Kho Bia · Gọn việc kho, rõ từng thùng.</span><span>Dữ liệu lưu trên trình duyệt <span aria-hidden="true">·</span> <button id="open-help">Hướng dẫn sử dụng</button></span></footer>
   </main>
   <dialog id="product-dialog" aria-labelledby="product-dialog-title"><form id="product-form"><div class="dialog-head"><h2 id="product-dialog-title">Thêm loại bia</h2><button class="icon-btn" type="button" data-close="product-dialog" aria-label="Đóng"><svg class="icon"><use href="#i-close"/></svg></button></div><div class="dialog-body"><div id="product-error" class="form-error" role="alert" hidden></div><div class="field"><label for="product-name">Tên loại bia</label><input id="product-name" maxlength="80" required placeholder="Ví dụ: Tiger Crystal" autocomplete="off"></div><div class="field-row"><div class="field"><label for="product-initial">Tồn đầu kỳ (thùng)</label><input id="product-initial" type="number" min="0" step="1" max="9007199254740991" required value="0"></div><div class="field"><label for="product-date">Ngày bắt đầu</label><input id="product-date" type="date" min="1900-01-01" max="9999-12-31" required></div></div><p class="field-hint">Tồn đầu kỳ là số thùng có sẵn trước các giao dịch của ngày bắt đầu, không tính là phiếu nhập. Phiếu giao dịch phải từ ngày này trở đi.</p></div><div class="dialog-actions"><button class="btn" type="button" data-close="product-dialog">Hủy</button><button class="btn primary" type="submit">Lưu loại bia</button></div></form></dialog>
   <dialog id="confirm-dialog" aria-labelledby="confirm-title"><div class="dialog-head"><h2 id="confirm-title">Xác nhận</h2><button class="icon-btn" type="button" data-close="confirm-dialog" aria-label="Đóng"><svg class="icon"><use href="#i-close"/></svg></button></div><div class="dialog-body"><p class="confirm-copy" id="confirm-copy"></p><div id="confirm-error" class="form-error" style="margin:16px 0 0" role="alert" hidden></div></div><div class="dialog-actions"><button class="btn" type="button" data-close="confirm-dialog" autofocus>Hủy</button><button class="btn primary" type="button" id="confirm-action">Xác nhận</button></div></dialog>
-  <dialog id="help-dialog" aria-labelledby="help-title"><div class="dialog-head"><h2 id="help-title">Bắt đầu trong một phút</h2><button class="icon-btn" type="button" data-close="help-dialog" aria-label="Đóng"><svg class="icon"><use href="#i-close"/></svg></button></div><div class="dialog-body"><ol class="help-list"><li>Vào <strong>Danh mục bia</strong>, thêm loại bia và khai báo tồn đầu kỳ cùng ngày bắt đầu.</li><li>Chọn <strong>Nhập kho</strong> hoặc <strong>Xuất kho</strong>, nhập ngày, loại bia và số thùng. Có thể thêm nhiều dòng rồi lưu một phiếu.</li><li>Xem số dư <strong>cuối ngày</strong> tại Tổng quan. Cùng một ngày, toàn bộ nhập được tính trước xuất.</li><li>Vào <strong>Lịch sử nhập xuất</strong> để lọc, sửa hoặc xóa phiếu. Phiếu có nhiều dòng được sửa hoặc xóa cùng nhau.</li><li>Cuối ngày, tải <strong>bản sao JSON</strong>. Dùng CSV nếu cần xem lịch sử trong Excel.</li></ol></div><div class="dialog-actions"><button class="btn primary" data-close="help-dialog">Đã hiểu</button></div></dialog>
+  <dialog id="help-dialog" aria-labelledby="help-title"><div class="dialog-head"><h2 id="help-title">Bắt đầu trong một phút</h2><button class="icon-btn" type="button" data-close="help-dialog" aria-label="Đóng"><svg class="icon"><use href="#i-close"/></svg></button></div><div class="dialog-body"><ol class="help-list"><li>Vào <strong>Danh mục bia</strong>, thêm loại bia và khai báo tồn đầu kỳ cùng ngày bắt đầu.</li><li>Chọn <strong>Nhập kho</strong> hoặc <strong>Xuất kho</strong>, nhập ngày, tên người thực hiện, loại bia và số lượng. Chọn đơn vị thùng hoặc lon; 24 lon = 1 thùng. Có thể thêm nhiều dòng rồi lưu một phiếu.</li><li>Xem số dư <strong>cuối ngày</strong> và nhập/xuất lũy kế từ ngày 1 của tháng tại Tổng quan. Cùng một ngày, toàn bộ nhập được tính trước xuất.</li><li>Vào <strong>Lịch sử nhập xuất</strong> để lọc, sửa hoặc xóa phiếu. Phiếu có nhiều dòng được sửa hoặc xóa cùng nhau.</li><li>Quản lý dùng <strong>Xem & xác nhận</strong>, chọn khoảng ngày và nhập tên để đánh dấu đã xem. Phiếu thay đổi sẽ cần xác nhận lại.</li><li>Cuối ngày, tải <strong>bản sao JSON</strong>. Dùng CSV nếu cần xem lịch sử trong Excel.</li></ol></div><div class="dialog-actions"><button class="btn primary" data-close="help-dialog">Đã hiểu</button></div></dialog>
   <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <dialog id="review-dialog" aria-labelledby="review-dialog-title"><form id="review-form"><div class="dialog-head"><div><h2 id="review-dialog-title">Xem lại & xác nhận nhập xuất</h2><p class="field-hint">Chọn một hoặc nhiều ngày để kiểm tra cùng lúc.</p></div><button class="icon-btn" type="button" data-close="review-dialog" aria-label="Đóng"><svg class="icon"><use href="#i-close"/></svg></button></div><div class="dialog-body"><div class="field-row"><div class="field"><label for="review-from">Từ ngày</label><input id="review-from" type="date" min="1900-01-01" required></div><div class="field"><label for="review-to">Đến hết ngày</label><input id="review-to" type="date" min="1900-01-01" required></div></div><div class="field"><label for="reviewer-name">Người chịu trách nhiệm xác nhận</label><input id="reviewer-name" maxlength="80" required placeholder="Ví dụ: Quản lý Hương" autocomplete="name"></div><div id="review-error" class="form-error" role="alert" hidden></div><p id="review-preview-summary" class="notice"></p><div id="review-preview" class="table-wrap"></div><p class="field-hint" style="margin-top:16px">Đây là mốc đã xem, không khóa sửa phiếu. Nếu giao dịch trong khoảng ngày thay đổi, mốc này sẽ báo “Cần xem lại”. Dữ liệu xác nhận cũng lưu trên trình duyệt này.</p></div><div class="dialog-actions"><button type="button" class="btn" data-close="review-dialog">Đóng</button><button type="submit" class="btn primary" id="save-review">Xác nhận đã xem</button></div></form></dialog>
 <script id="inventory-core">
 'use strict';
 // Tồn kho là số dư cuối ngày; cùng ngày tính toàn bộ nhập trước toàn bộ xuất.
 globalThis.Inventory = (() => {
-  const VERSION = 1;
+  const VERSION = 2;
+  const CANS_PER_CASE = 24;
   const MAX_PRODUCTS = 500;
   const MAX_TRANSACTIONS = 100000;
   const fail = message => { throw new Error(message); };
@@ -125,9 +133,21 @@ globalThis.Inventory = (() => {
     if (!Number.isSafeInteger(result)) fail('Số lượng vượt giới hạn tính toán an toàn.');
     return result;
   }
+  function toCans(item) {
+    const result = item.quantity * ((item.unit || 'case') === 'case' ? CANS_PER_CASE : 1);
+    if (!quantityValid(result, true)) fail('Số lượng vượt giới hạn tính toán an toàn.');
+    return result;
+  }
+  function quantityText(cans) {
+    const negative = cans < 0 ? '−' : '';
+    const value = Math.abs(cans);
+    const cases = Math.floor(value / CANS_PER_CASE), loose = value % CANS_PER_CASE;
+    const format = n => new Intl.NumberFormat('vi-VN').format(n);
+    return negative + [cases ? `${format(cases)} thùng` : '', loose ? `${format(loose)} lon` : ''].filter(Boolean).join(' ') || '0 thùng';
+  }
   function validate(input) {
-    if (!input || typeof input !== 'object' || input.version !== VERSION || !Array.isArray(input.products) || !Array.isArray(input.transactions)) {
-      fail('File không đúng định dạng sao lưu Kho Bia (phiên bản 1).');
+    if (!input || typeof input !== 'object' || ![1, VERSION].includes(input.version) || !Array.isArray(input.products) || !Array.isArray(input.transactions)) {
+      fail('File không đúng định dạng sao lưu Kho Bia (phiên bản 1 hoặc 2).');
     }
     if (input.products.length > MAX_PRODUCTS || input.transactions.length > MAX_TRANSACTIONS) fail('Dữ liệu vượt giới hạn 500 loại bia hoặc 100.000 phiếu.');
     const ids = new Set();
@@ -139,6 +159,7 @@ globalThis.Inventory = (() => {
       const key = name.toLocaleLowerCase('vi');
       if (names.has(key)) fail(`Tên loại bia “${name}” bị trùng.`);
       if (!quantityValid(p.initialStock, true) || !dateValid(p.initialDate) || typeof p.active !== 'boolean') fail(`Tồn đầu kỳ hoặc ngày bắt đầu của ${name} không hợp lệ.`);
+      toCans({ quantity: p.initialStock });
       ids.add(p.id); names.add(key);
       return { id: p.id, name, initialStock: p.initialStock, initialDate: p.initialDate, active: p.active };
     });
@@ -147,53 +168,87 @@ globalThis.Inventory = (() => {
     const transactions = input.transactions.map(t => {
       if (!t || !idValid(t.id) || transactionIds.has(t.id)) fail('Mã phiếu không hợp lệ hoặc bị trùng.');
       if (!dateValid(t.date) || !['in', 'out'].includes(t.type) || !textValid(t.note, 1000)) fail('Ngày, hình thức hoặc ghi chú của phiếu không hợp lệ.');
+      const operator = input.version === 1 ? '' : t.operator;
+      if (!textValid(operator, 80)) fail('Tên người thực hiện không hợp lệ (tối đa 80 ký tự).');
       if (!Array.isArray(t.items) || t.items.length < 1 || t.items.length > MAX_PRODUCTS) fail('Mỗi phiếu cần ít nhất một loại bia.');
       transactionIds.add(t.id);
       const itemIds = new Set();
       const items = t.items.map(item => {
         const p = item && byId.get(item.productId);
-        if (!p || itemIds.has(item.productId) || !quantityValid(item.quantity)) fail('Loại bia bị trùng, không tồn tại hoặc số thùng không phải số nguyên dương.');
+        if (!p || itemIds.has(item.productId) || !quantityValid(item.quantity)) fail('Loại bia bị trùng, không tồn tại hoặc số lượng không phải số nguyên dương.');
+        const unit = input.version === 1 ? 'case' : item.unit;
+        if (!['case', 'can'].includes(unit)) fail('Đơn vị phải là thùng hoặc lon.');
+        toCans({ quantity: item.quantity, unit });
         if (t.date < p.initialDate) fail(`Phiếu ${p.name} ngày ${t.date} đứng trước ngày bắt đầu ${p.initialDate}.`);
         itemIds.add(item.productId);
-        return { productId: item.productId, quantity: item.quantity };
+        return { productId: item.productId, quantity: item.quantity, unit };
       });
-      return { id: t.id, date: t.date, type: t.type, items, note: t.note.trim() };
+      return { id: t.id, date: t.date, type: t.type, items, note: t.note.trim(), operator: operator.trim() };
     });
-    const data = { version: VERSION, products, transactions };
+    const sourceReviews = input.version === 1 ? [] : input.reviews;
+    if (!Array.isArray(sourceReviews) || sourceReviews.length > 5000) fail('Danh sách xác nhận không hợp lệ hoặc vượt 5.000 mốc.');
+    const reviewIds = new Set();
+    const reviews = sourceReviews.map(r => {
+      if (!r || !idValid(r.id) || reviewIds.has(r.id) || !dateValid(r.from) || !dateValid(r.to) || r.from > r.to || !textValid(r.reviewer, 80) || !r.reviewer.trim() || !textValid(r.snapshot, 2000000) || typeof r.confirmedAt !== 'string' || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/.test(r.confirmedAt) || !Number.isFinite(new Date(r.confirmedAt).getTime())) fail('Mốc xác nhận không hợp lệ.');
+      reviewIds.add(r.id);
+      return { id: r.id, from: r.from, to: r.to, reviewer: r.reviewer.trim(), confirmedAt: r.confirmedAt, snapshot: r.snapshot };
+    });
+    const data = { version: VERSION, products, transactions, reviews };
     checkTimeline(data);
+    periodTotals(data, '1900-01-01', '9999-12-31');
     return data;
   }
   function checkTimeline(data) {
-    const events = data.products.map(p => ({ date: p.initialDate, rank: 0, productId: p.id, quantity: p.initialStock }));
-    for (const t of data.transactions) for (const item of t.items) events.push({ date: t.date, rank: t.type === 'in' ? 1 : 2, productId: item.productId, quantity: t.type === 'in' ? item.quantity : -item.quantity });
+    const events = data.products.map(p => ({ date: p.initialDate, rank: 0, productId: p.id, quantity: toCans({ quantity: p.initialStock }) }));
+    for (const t of data.transactions) for (const item of t.items) events.push({ date: t.date, rank: t.type === 'in' ? 1 : 2, productId: item.productId, quantity: t.type === 'in' ? toCans(item) : -toCans(item) });
     events.sort((a, b) => a.date.localeCompare(b.date) || a.rank - b.rank);
     const balances = new Map();
     const names = new Map(data.products.map(p => [p.id, p.name]));
     let total = 0;
     for (const event of events) {
       const balance = add(balances.get(event.productId) || 0, event.quantity);
-      if (balance < 0) fail(`Không đủ tồn kho: ${names.get(event.productId)} thiếu ${-balance} thùng vào ngày ${event.date}. Hãy kiểm tra phiếu nhập, xuất và tồn đầu kỳ.`);
+      if (balance < 0) fail(`Không đủ tồn kho: ${names.get(event.productId)} thiếu ${quantityText(-balance)} vào ngày ${event.date}. Hãy kiểm tra phiếu nhập, xuất và tồn đầu kỳ.`);
       balances.set(event.productId, balance);
       total = add(total, event.quantity);
     }
   }
   function snapshot(data, date) {
     if (!dateValid(date)) fail('Ngày xem tồn kho không hợp lệ.');
-    const balances = new Map(data.products.map(p => [p.id, p.initialDate <= date ? p.initialStock : 0]));
+    const balances = new Map(data.products.map(p => [p.id, p.initialDate <= date ? toCans({ quantity: p.initialStock }) : 0]));
     let incoming = 0, outgoing = 0;
     const transactions = data.transactions.filter(t => t.date <= date).sort((a, b) => a.date.localeCompare(b.date) || (a.type === 'in' ? 0 : 1) - (b.type === 'in' ? 0 : 1));
     for (const t of transactions) {
       for (const item of t.items) {
-        balances.set(item.productId, add(balances.get(item.productId) || 0, t.type === 'in' ? item.quantity : -item.quantity));
+        balances.set(item.productId, add(balances.get(item.productId) || 0, t.type === 'in' ? toCans(item) : -toCans(item)));
         if (t.date === date) {
-          if (t.type === 'in') incoming = add(incoming, item.quantity);
-          else outgoing = add(outgoing, item.quantity);
+          if (t.type === 'in') incoming = add(incoming, toCans(item));
+          else outgoing = add(outgoing, toCans(item));
         }
       }
     }
-    const products = data.products.map(p => ({ ...p, stock: balances.get(p.id) }));
-    return { products, total: products.reduce((sum, p) => add(sum, p.stock), 0), incoming, outgoing };
+    const products = data.products.map(p => ({ ...p, stockCans: balances.get(p.id), stock: balances.get(p.id) / CANS_PER_CASE }));
+    const totalCans = products.reduce((sum, p) => add(sum, p.stockCans), 0);
+    return { products, totalCans, total: totalCans / CANS_PER_CASE, incomingCans: incoming, outgoingCans: outgoing, incoming: incoming / CANS_PER_CASE, outgoing: outgoing / CANS_PER_CASE };
   }
+  function periodTotals(data, from, to) {
+    if (!dateValid(from) || !dateValid(to) || from > to) fail('Khoảng ngày không hợp lệ.');
+    let incomingCans = 0, outgoingCans = 0;
+    const transactions = filterTransactions(data, { from, to });
+    for (const t of transactions) for (const item of t.items) {
+      if (t.type === 'in') incomingCans = add(incomingCans, toCans(item));
+      else outgoingCans = add(outgoingCans, toCans(item));
+    }
+    return { incomingCans, outgoingCans, transactions };
+  }
+  // Lưu nội dung đã xem để phát hiện cả sửa, xóa và bổ sung phiếu lùi ngày.
+  function reviewSnapshot(data, from, to) {
+    const names = new Map(data.products.map(p => [p.id, p.name]));
+    return JSON.stringify(filterTransactions(data, { from, to }).sort((a, b) => a.id.localeCompare(b.id)).map(t => ({ id: t.id, date: t.date, type: t.type, operator: t.operator || '', note: t.note, items: t.items.map(i => ({ productId: i.productId, name: names.get(i.productId), quantity: i.quantity, unit: i.unit || 'case' })).sort((a, b) => a.productId.localeCompare(b.productId)) })));
+  }
+  function reviewStatuses(data) {
+    return (data.reviews || []).map(r => ({ ...r, valid: r.snapshot === reviewSnapshot(data, r.from, r.to) })).sort((a, b) => b.confirmedAt.localeCompare(a.confirmedAt) || b.id.localeCompare(a.id));
+  }
+  function reviewFor(transaction, reviews) { return reviews.find(r => r.valid && r.from <= transaction.date && r.to >= transaction.date); }
   function filterTransactions(data, filters = {}) {
     return data.transactions.filter(t => (!filters.from || t.date >= filters.from) && (!filters.to || t.date <= filters.to) && (!filters.type || t.type === filters.type) && (!filters.productId || t.items.some(i => i.productId === filters.productId))).sort((a, b) => b.date.localeCompare(a.date));
   }
@@ -205,32 +260,41 @@ globalThis.Inventory = (() => {
   }
   function csv(data, filters = {}) {
     const names = new Map(data.products.map(p => [p.id, p.name]));
-    const rows = [['Ngày giao dịch', 'Loại bia', 'Số lượng nhập (thùng)', 'Số lượng xuất (thùng)', 'Ghi chú', 'Mã phiếu'].map(v => csvCell(v)).join(',')];
+    const reviews = reviewStatuses(data);
+    const rows = [['Ngày giao dịch', 'Loại bia', 'Số lượng nhập', 'Số lượng xuất', 'Ghi chú', 'Mã phiếu', 'Đơn vị', 'Người thực hiện', 'Quy đổi (lon)', 'Người xác nhận', 'Khoảng ngày xác nhận'].map(v => csvCell(v)).join(',')];
     for (const t of filterTransactions(data, filters)) for (const item of t.items) {
       if (filters.productId && item.productId !== filters.productId) continue;
-      rows.push([csvCell(t.date), csvCell(names.get(item.productId), true), csvCell(t.type === 'in' ? item.quantity : 0), csvCell(t.type === 'out' ? item.quantity : 0), csvCell(t.note, true), csvCell(t.id, true)].join(','));
+      const review = reviewFor(t, reviews);
+      rows.push([csvCell(t.date), csvCell(names.get(item.productId), true), csvCell(t.type === 'in' ? item.quantity : 0), csvCell(t.type === 'out' ? item.quantity : 0), csvCell(t.note, true), csvCell(t.id, true), csvCell(item.unit === 'can' ? 'lon' : 'thùng'), csvCell(t.operator || '', true), csvCell(toCans(item)), csvCell(review?.reviewer || '', true), csvCell(review ? `${review.from} - ${review.to}` : '')].join(','));
     }
     return '\uFEFF' + rows.join('\r\n');
   }
-  const empty = () => ({ version: VERSION, products: [], transactions: [] });
-  return { VERSION, today, dateValid, quantityValid, validate, snapshot, filterTransactions, csv, empty };
+  const empty = () => ({ version: VERSION, products: [], transactions: [], reviews: [] });
+  return { VERSION, CANS_PER_CASE, today, dateValid, quantityValid, toCans, quantityText, validate, snapshot, periodTotals, reviewSnapshot, reviewStatuses, reviewFor, filterTransactions, csv, empty };
 })();
 </script>
 <script id="inventory-app">
 'use strict';
 (() => {
   const I = Inventory;
+  // Giữ khóa cũ; validate chuyển v1 sang v2 khi đọc, ghi v2 khi lưu thành công.
   const STORAGE_KEY = 'kho-bia.data.v1';
   const BACKUP_KEY = 'kho-bia.last-backup.v1';
   const $ = id => document.getElementById(id);
   const esc = value => String(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const icon = name => `<svg class="icon" aria-hidden="true"><use href="#i-${name}"/></svg>`;
   const format = number => new Intl.NumberFormat('vi-VN').format(number);
+  const quantityMarkup = cans => {
+    const cases = Math.floor(cans / 24), loose = cans % 24;
+    return [cases || !loose ? `${format(cases)} <span>thùng</span>` : '', loose ? `${format(loose)} <span>lon</span>` : ''].filter(Boolean).join(' ');
+  };
+  const itemText = item => `${format(item.quantity)} ${item.unit === 'can' ? 'lon' : 'thùng'}`;
+  const transactionCans = t => t.items.reduce((sum, item) => sum + I.toCans(item), 0);
   const dateText = date => date.split('-').reverse().join('/');
   const id = () => globalThis.crypto?.randomUUID?.() || `id-${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
   let state = I.empty(), currentRaw = null, storageProblem = '', readUnavailable = false;
   let page = 'overview', transactionType = 'in', editingId = null, editingOriginal = null, editingProductId = null, editingProductOriginal = null;
-  let historyPage = 1, toastTimer, confirmCallback = null;
+  let historyPage = 1, toastTimer, confirmCallback = null, reviewPreviewSnapshot = null;
   const PAGE_SIZE = 30;
 
   function notify(message, error = false) {
@@ -290,22 +354,67 @@ globalThis.Inventory = (() => {
   function renderOverview() {
     const date = I.dateValid($('snapshot-date').value) ? $('snapshot-date').value : I.today();
     const view = I.snapshot(state, date);
+    const monthStart = date.slice(0, 7) + '-01';
+    const month = I.periodTotals(state, monthStart, date);
     $('today-label').textContent = new Intl.DateTimeFormat('vi-VN', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(new Date());
     $('snapshot-caption').textContent = date === I.today() ? 'Cập nhật từ sổ nhập xuất của bạn' : `Đang xem số liệu ngày ${dateText(date)}`;
-    $('total-stock').innerHTML = `${format(view.total)} <span>thùng</span>`;
+    $('total-stock').innerHTML = quantityMarkup(view.totalCans);
     $('total-caption').textContent = `Tồn cuối ngày ${dateText(date)} · ${state.products.length} loại bia`;
-    $('daily-in').innerHTML = `${format(view.incoming)} <span>thùng</span>`;
-    $('daily-out').innerHTML = `${format(view.outgoing)} <span>thùng</span>`;
+    $('monthly-in').innerHTML = quantityMarkup(month.incomingCans);
+    $('monthly-out').innerHTML = quantityMarkup(month.outgoingCans);
     for (const type of ['in', 'out']) {
-      const count = state.transactions.filter(t => t.date === date && t.type === type).length;
-      $(type === 'in' ? 'incoming-caption' : 'outgoing-caption').textContent = `${count ? `${format(count)} phiếu ${type === 'in' ? 'nhập' : 'xuất'}` : `Chưa có phiếu ${type === 'in' ? 'nhập' : 'xuất'}`} · ${dateText(date)}`;
+      const count = month.transactions.filter(t => t.type === type).length;
+      $(type === 'in' ? 'incoming-caption' : 'outgoing-caption').textContent = `${count ? `${format(count)} phiếu ${type === 'in' ? 'nhập' : 'xuất'}` : `Chưa có phiếu ${type === 'in' ? 'nhập' : 'xuất'}`} · ${dateText(monthStart)} – ${dateText(date)}`;
     }
     $('product-count').textContent = `${state.products.length} loại`;
     $('stock-date-caption').textContent = `Cuối ngày ${dateText(date)} · Bao gồm loại đã ngừng dùng`;
-    $('stock-list').innerHTML = view.products.length ? `<div class="table-wrap"><table class="stock-table"><thead><tr><th scope="col">Loại bia</th><th scope="col" class="align-right">Tồn kho</th><th scope="col" class="align-right">Trạng thái</th></tr></thead><tbody>${view.products.map(p => `<tr><td>${beerName(p)}</td><td class="align-right nowrap"><span class="stock-quantity num ${p.stock === 0 ? 'zero' : ''}">${format(p.stock)}</span><span class="unit">thùng</span></td><td class="align-right"><span class="tag ${p.initialDate > date || !p.active ? 'inactive' : p.stock === 0 ? 'zero' : ''}">${p.initialDate > date ? 'Chưa bắt đầu' : !p.active ? 'Ngừng dùng' : p.stock === 0 ? 'Hết hàng' : 'Còn hàng'}</span></td></tr>`).join('')}</tbody></table></div>` : emptyBlock('Kho bia của bạn bắt đầu ở đây', 'Thêm loại bia và số thùng có sẵn. Sau đó ghi nhận nhập, xuất mỗi ngày.', '<button class="btn primary" data-add-product>Thêm loại bia đầu tiên</button>');
+    $('stock-list').innerHTML = view.products.length ? `<div class="table-wrap"><table class="stock-table"><thead><tr><th scope="col">Loại bia</th><th scope="col" class="align-right">Tồn kho</th><th scope="col" class="align-right">Trạng thái</th></tr></thead><tbody>${view.products.map(p => `<tr><td>${beerName(p)}</td><td class="align-right nowrap"><span class="stock-quantity num ${p.stock === 0 ? 'zero' : ''}">${esc(I.quantityText(p.stockCans))}</span></td><td class="align-right"><span class="tag ${p.initialDate > date || !p.active ? 'inactive' : p.stock === 0 ? 'zero' : ''}">${p.initialDate > date ? 'Chưa bắt đầu' : !p.active ? 'Ngừng dùng' : p.stock === 0 ? 'Hết hàng' : 'Còn hàng'}</span></td></tr>`).join('')}</tbody></table></div>` : emptyBlock('Kho bia của bạn bắt đầu ở đây', 'Thêm loại bia và số thùng có sẵn. Sau đó ghi nhận nhập, xuất mỗi ngày.', '<button class="btn primary" data-add-product>Thêm loại bia đầu tiên</button>');
     const recent = I.filterTransactions(state).slice(0, 5);
     const byId = new Map(state.products.map(p => [p.id, p]));
-    $('recent-list').innerHTML = recent.length ? `<div class="table-wrap"><table class="recent-table"><thead><tr><th scope="col">Ngày</th><th scope="col">Loại bia</th><th scope="col" class="align-right">Số thùng</th><th scope="col" class="recent-note">Ghi chú</th></tr></thead><tbody>${recent.map(t => `<tr class="recent-row"><td class="nowrap">${dateText(t.date)}${t.date > I.today() ? '<div class="beer-sub">Phiếu tương lai</div>' : ''}</td><td><div class="beer-text">${esc(byId.get(t.items[0].productId).name)}</div>${t.items.length > 1 ? `<div class="beer-sub">và ${t.items.length - 1} loại khác</div>` : ''}</td><td class="align-right signed num ${t.type === 'out' ? 'out' : ''}">${t.type === 'in' ? '+' : '−'}${format(t.items.reduce((n, i) => n + i.quantity, 0))}</td><td class="recent-note notes-cell">${esc(t.note || '—')}</td></tr>`).join('')}</tbody></table></div>` : emptyBlock('Chưa có giao dịch', 'Những phiếu nhập và xuất sẽ xuất hiện ở đây sau khi bạn lưu.');
+    $('recent-list').innerHTML = recent.length ? `<div class="table-wrap"><table class="recent-table"><thead><tr><th scope="col">Ngày</th><th scope="col">Loại bia</th><th scope="col" class="align-right">Số lượng</th><th scope="col" class="recent-note">Ghi chú</th></tr></thead><tbody>${recent.map(t => `<tr class="recent-row"><td class="nowrap">${dateText(t.date)}${t.date > I.today() ? '<div class="beer-sub">Phiếu tương lai</div>' : ''}</td><td><div class="beer-text">${esc(byId.get(t.items[0].productId).name)}</div>${t.items.length > 1 ? `<div class="beer-sub">và ${t.items.length - 1} loại khác</div>` : ''}</td><td class="align-right signed num ${t.type === 'out' ? 'out' : ''}">${t.type === 'in' ? '+' : '−'}${esc(I.quantityText(transactionCans(t)))}</td><td class="recent-note notes-cell">${esc(t.note || '—')}<div class="recent-person">${esc(t.operator || 'Chưa ghi tên')}</div></td></tr>`).join('')}</tbody></table></div>` : emptyBlock('Chưa có giao dịch', 'Những phiếu nhập và xuất sẽ xuất hiện ở đây sau khi bạn lưu.');
+  }
+  function reviewBadge(t, reviews) {
+    const review = I.reviewFor(t, reviews);
+    return review ? `<span class="tag">Đã xác nhận</span><div class="beer-sub">${esc(review.reviewer)}</div>` : '<span class="tag zero">Chưa xác nhận</span>';
+  }
+  function renderReviews() {
+    const date = $('snapshot-date').value || I.today();
+    const end = date > I.today() ? I.today() : date;
+    const reviews = I.reviewStatuses(state);
+    const pending = state.transactions.filter(t => t.date >= date.slice(0, 7) + '-01' && t.date <= end && !I.reviewFor(t, reviews));
+    $('review-pending').textContent = `${format(pending.length)} phiếu chưa xác nhận trong tháng`;
+    const last = reviews.find(r => r.valid);
+    $('review-summary').textContent = last ? `Đã xem ${dateText(last.from)} – ${dateText(last.to)} · ${last.reviewer}. Có thể xác nhận gộp nhiều ngày.` : 'Quản lý có thể xem và xác nhận một ngày hoặc gộp những ngày còn thiếu.';
+    $('review-history-label').textContent = `Lịch sử xác nhận (${format(reviews.length)} mốc)`;
+    $('review-list').innerHTML = reviews.length ? reviews.map(r => `<div class="review-entry"><div><strong>${dateText(r.from)} – ${dateText(r.to)}</strong><p>${esc(r.reviewer)} · ${new Date(r.confirmedAt).toLocaleString('vi-VN')}</p></div><span class="tag ${r.valid ? '' : 'zero'}">${r.valid ? 'Đã xem' : 'Cần xem lại · phiếu đã thay đổi'}</span></div>`).join('') : '<p class="muted small" style="padding:0 24px 16px">Chưa có mốc xác nhận nào.</p>';
+    $('open-review').disabled = !!storageProblem;
+  }
+  function renderReviewPreview() {
+    const from = $('review-from').value, to = $('review-to').value;
+    reviewPreviewSnapshot = null;
+    const valid = I.dateValid(from) && I.dateValid(to) && from <= to && to <= I.today();
+    $('save-review').disabled = !valid || !!storageProblem;
+    if (!valid) {
+      showError('review-error', 'Chọn khoảng ngày hợp lệ, từ ngày bắt đầu đến hết hôm nay.');
+      $('review-preview').innerHTML = ''; $('review-preview-summary').textContent = 'Chưa có khoảng ngày hợp lệ.'; return;
+    }
+    showError('review-error', '');
+    const totals = I.periodTotals(state, from, to);
+    reviewPreviewSnapshot = I.reviewSnapshot(state, from, to);
+    $('review-preview-summary').textContent = `${format(totals.transactions.length)} phiếu · Nhập ${I.quantityText(totals.incomingCans)} · Xuất ${I.quantityText(totals.outgoingCans)}${!totals.transactions.length ? ' · Xác nhận khoảng ngày không phát sinh giao dịch.' : ''}`;
+    const names = new Map(state.products.map(p => [p.id, p.name]));
+    $('review-preview').innerHTML = totals.transactions.length ? `<table><thead><tr><th>Ngày</th><th>Loại bia / số lượng</th><th>Người thực hiện</th><th>Ghi chú</th></tr></thead><tbody>${totals.transactions.map(t => `<tr><td class="nowrap">${dateText(t.date)}<br><span class="tag ${t.type === 'out' ? 'out' : ''}">${t.type === 'in' ? 'Nhập' : 'Xuất'}</span></td><td>${t.items.map(i => `<div>${esc(names.get(i.productId))} · <strong>${esc(itemText(i))}</strong></div>`).join('')}</td><td class="person-cell">${esc(t.operator || 'Chưa ghi tên')}</td><td class="notes-cell">${esc(t.note || '—')}</td></tr>`).join('')}</tbody></table>` : '<p class="muted small" style="padding:20px">Không có phiếu nhập xuất trong khoảng ngày này.</p>';
+  }
+  function openReview() {
+    const selected = $('snapshot-date').value || I.today();
+    const end = selected > I.today() ? I.today() : selected;
+    const reviews = I.reviewStatuses(state);
+    const pending = state.transactions.filter(t => t.date >= end.slice(0, 7) + '-01' && t.date <= end && !I.reviewFor(t, reviews)).sort((a, b) => a.date.localeCompare(b.date));
+    $('review-from').value = pending[0]?.date || end;
+    $('review-to').value = end;
+    $('review-from').max = I.today(); $('review-to').max = I.today();
+    $('reviewer-name').value = reviews[0]?.reviewer || '';
+    renderReviewPreview(); $('review-dialog').showModal();
   }
   function filterValues() {
     return { from: $('filter-from').value, to: $('filter-to').value, productId: $('filter-product').value, type: $('filter-type').value };
@@ -325,18 +434,19 @@ globalThis.Inventory = (() => {
     historyPage = Math.max(1, Math.min(historyPage, totalPages));
     const shown = rows.slice((historyPage - 1) * PAGE_SIZE, historyPage * PAGE_SIZE);
     const byId = new Map(state.products.map(p => [p.id, p]));
+    const reviews = I.reviewStatuses(state);
     $('history-count').textContent = `${format(transactions.length)} phiếu · ${format(rows.length)} dòng chi tiết${filters.from && filters.from === filters.to ? ` · Ngày ${dateText(filters.from)}` : ''}. Sửa hoặc xóa áp dụng cho toàn bộ phiếu.`;
-    $('history-list').innerHTML = shown.length ? `<div class="table-wrap"><table class="history-table"><thead><tr><th scope="col">Ngày giao dịch</th><th scope="col">Loại bia</th><th scope="col">Hình thức</th><th scope="col" class="align-right">Nhập</th><th scope="col" class="align-right">Xuất</th><th scope="col">Ghi chú</th><th scope="col" class="align-right">Thao tác</th></tr></thead><tbody>${shown.map(({t, item}) => `<tr><td class="nowrap">${dateText(t.date)}${t.date > I.today() ? '<div class="beer-sub">Phiếu tương lai</div>' : ''}${t.items.length > 1 ? `<div class="beer-sub">Phiếu ${t.items.length} loại bia</div>` : ''}</td><td>${beerName(byId.get(item.productId))}</td><td><span class="tag ${t.type === 'out' ? 'out' : ''}">${t.type === 'in' ? 'Nhập kho' : 'Xuất kho'}</span></td><td class="align-right num qty-in">${t.type === 'in' ? '+' + format(item.quantity) : '—'}</td><td class="align-right num qty-out">${t.type === 'out' ? '−' + format(item.quantity) : '—'}</td><td class="notes-cell">${esc(t.note || '—')}</td><td><div class="row-actions"><button class="icon-btn" data-edit-transaction="${esc(t.id)}" aria-label="Sửa phiếu ${dateText(t.date)} ${esc(byId.get(item.productId).name)}" title="Sửa toàn bộ phiếu">${icon('edit')}</button><button class="icon-btn delete" data-delete-transaction="${esc(t.id)}" aria-label="Xóa phiếu ${dateText(t.date)} ${esc(byId.get(item.productId).name)}" title="Xóa toàn bộ phiếu">${icon('trash')}</button></div></td></tr>`).join('')}</tbody></table></div>` : emptyBlock(state.transactions.length ? 'Không tìm thấy giao dịch' : 'Sổ kho chưa có giao dịch', state.transactions.length ? 'Thử thay đổi bộ lọc hoặc mở rộng khoảng ngày.' : 'Tạo phiếu nhập hoặc xuất từ màn hình Tổng quan.');
+    $('history-list').innerHTML = shown.length ? `<div class="table-wrap"><table class="history-table"><thead><tr><th scope="col">Ngày giao dịch</th><th scope="col">Loại bia</th><th scope="col">Hình thức</th><th scope="col" class="align-right">Nhập</th><th scope="col" class="align-right">Xuất</th><th scope="col">Người thực hiện</th><th scope="col">Ghi chú</th><th scope="col">Xác nhận</th><th scope="col" class="align-right">Thao tác</th></tr></thead><tbody>${shown.map(({t, item}) => `<tr><td class="nowrap">${dateText(t.date)}${t.date > I.today() ? '<div class="beer-sub">Phiếu tương lai</div>' : ''}${t.items.length > 1 ? `<div class="beer-sub">Phiếu ${t.items.length} loại bia</div>` : ''}</td><td>${beerName(byId.get(item.productId))}</td><td><span class="tag ${t.type === 'out' ? 'out' : ''}">${t.type === 'in' ? 'Nhập kho' : 'Xuất kho'}</span></td><td class="align-right num qty-in">${t.type === 'in' ? '+' + esc(itemText(item)) : '—'}</td><td class="align-right num qty-out">${t.type === 'out' ? '−' + esc(itemText(item)) : '—'}</td><td class="person-cell">${esc(t.operator || 'Chưa ghi tên')}</td><td class="notes-cell">${esc(t.note || '—')}</td><td class="person-cell">${reviewBadge(t, reviews)}</td><td><div class="row-actions"><button class="icon-btn" data-edit-transaction="${esc(t.id)}" aria-label="Sửa phiếu ${dateText(t.date)} ${esc(byId.get(item.productId).name)}" title="Sửa toàn bộ phiếu">${icon('edit')}</button><button class="icon-btn delete" data-delete-transaction="${esc(t.id)}" aria-label="Xóa phiếu ${dateText(t.date)} ${esc(byId.get(item.productId).name)}" title="Xóa toàn bộ phiếu">${icon('trash')}</button></div></td></tr>`).join('')}</tbody></table></div>` : emptyBlock(state.transactions.length ? 'Không tìm thấy giao dịch' : 'Sổ kho chưa có giao dịch', state.transactions.length ? 'Thử thay đổi bộ lọc hoặc mở rộng khoảng ngày.' : 'Tạo phiếu nhập hoặc xuất từ màn hình Tổng quan.');
     $('history-pagination').hidden = totalPages <= 1;
     $('history-pagination').innerHTML = `<span>Trang ${historyPage} / ${totalPages} · ${PAGE_SIZE} dòng mỗi trang</span><div class="pagination-controls"><button class="btn compact" data-history-prev ${historyPage === 1 ? 'disabled' : ''}>Trang trước</button><button class="btn compact" data-history-next ${historyPage === totalPages ? 'disabled' : ''}>Trang sau</button></div>`;
   }
   function renderCatalog() {
     const products = I.snapshot(state, I.today()).products;
     $('catalog-count').textContent = `${products.length} loại`;
-    $('catalog-list').innerHTML = products.length ? `<div class="table-wrap"><table class="catalog-table"><thead><tr><th scope="col">Loại bia</th><th scope="col" class="align-right">Tồn đầu kỳ</th><th scope="col">Ngày bắt đầu</th><th scope="col" class="align-right">Tồn hôm nay</th><th scope="col">Trạng thái</th><th scope="col" class="align-right">Thao tác</th></tr></thead><tbody>${products.map(p => `<tr><td>${beerName(p)}</td><td class="align-right num">${format(p.initialStock)}</td><td class="nowrap">${dateText(p.initialDate)}</td><td class="align-right num"><strong>${format(p.stock)}</strong></td><td><span class="tag ${p.active ? '' : 'inactive'}">${p.active ? 'Đang sử dụng' : 'Ngừng dùng'}</span></td><td><div class="row-actions"><button class="icon-btn" data-edit-product="${esc(p.id)}" aria-label="Sửa ${esc(p.name)}" title="Sửa tên và tồn đầu kỳ">${icon('edit')}</button><button class="btn compact ghost" data-toggle-product="${esc(p.id)}">${p.active ? 'Ngừng dùng' : 'Dùng lại'}</button></div></td></tr>`).join('')}</tbody></table></div>` : emptyBlock('Thêm loại bia đầu tiên', 'Khai báo tên bia, tồn đầu kỳ và ngày bạn bắt đầu theo dõi.', '<button class="btn primary" data-add-product>Thêm loại bia</button>');
+    $('catalog-list').innerHTML = products.length ? `<div class="table-wrap"><table class="catalog-table"><thead><tr><th scope="col">Loại bia</th><th scope="col" class="align-right">Tồn đầu kỳ</th><th scope="col">Ngày bắt đầu</th><th scope="col" class="align-right">Tồn hôm nay</th><th scope="col">Trạng thái</th><th scope="col" class="align-right">Thao tác</th></tr></thead><tbody>${products.map(p => `<tr><td>${beerName(p)}</td><td class="align-right num">${format(p.initialStock)}</td><td class="nowrap">${dateText(p.initialDate)}</td><td class="align-right num"><strong>${esc(I.quantityText(p.stockCans))}</strong></td><td><span class="tag ${p.active ? '' : 'inactive'}">${p.active ? 'Đang sử dụng' : 'Ngừng dùng'}</span></td><td><div class="row-actions"><button class="icon-btn" data-edit-product="${esc(p.id)}" aria-label="Sửa ${esc(p.name)}" title="Sửa tên và tồn đầu kỳ">${icon('edit')}</button><button class="btn compact ghost" data-toggle-product="${esc(p.id)}">${p.active ? 'Ngừng dùng' : 'Dùng lại'}</button></div></td></tr>`).join('')}</tbody></table></div>` : emptyBlock('Thêm loại bia đầu tiên', 'Khai báo tên bia, tồn đầu kỳ và ngày bạn bắt đầu theo dõi.', '<button class="btn primary" data-add-product>Thêm loại bia</button>');
   }
   function renderBackup() {
-    $('backup-summary').textContent = `${format(state.products.length)} loại bia · ${format(state.transactions.length)} phiếu nhập xuất`;
+    $('backup-summary').textContent = `${format(state.products.length)} loại bia · ${format(state.transactions.length)} phiếu nhập xuất · ${format(state.reviews.length)} mốc xác nhận`;
     try {
       const last = localStorage.getItem(BACKUP_KEY);
       const date = last ? new Date(last) : null;
@@ -349,7 +459,7 @@ globalThis.Inventory = (() => {
     if (state.products.some(p => p.id === selected)) $('filter-product').value = selected;
   }
   function renderAll() {
-    renderStorageStatus(); renderOverview(); renderFilterOptions(); renderHistory(); renderCatalog(); renderBackup(); refreshEditorProducts();
+    renderStorageStatus(); renderOverview(); renderReviews(); renderFilterOptions(); renderHistory(); renderCatalog(); renderBackup(); refreshEditorProducts();
   }
   function existingEditedTransaction() { return editingId ? state.transactions.find(t => t.id === editingId) : null; }
   function allowedProducts() {
@@ -366,7 +476,7 @@ globalThis.Inventory = (() => {
     if ($('transaction-items').children.length >= 500) { notify('Mỗi phiếu tối đa 500 loại bia.', true); return; }
     const row = document.createElement('div');
     row.className = 'item-row';
-    row.innerHTML = `<select class="item-product" aria-label="Loại bia" required>${optionsFor(item.productId)}</select><input class="item-quantity" aria-label="Số thùng" type="number" min="1" step="1" max="9007199254740991" required placeholder="0" value="${esc(item.quantity)}"><button class="icon-btn delete" type="button" data-remove-item aria-label="Xóa dòng bia" title="Xóa dòng">${icon('close')}</button><div class="line-help"></div>`;
+    row.innerHTML = `<select class="item-product" aria-label="Loại bia" required>${optionsFor(item.productId)}</select><input class="item-quantity" aria-label="Số lượng" type="number" min="1" step="1" max="9007199254740991" required placeholder="0" value="${esc(item.quantity)}"><select class="item-unit" aria-label="Đơn vị"><option value="case" ${item.unit !== 'can' ? 'selected' : ''}>Thùng</option><option value="can" ${item.unit === 'can' ? 'selected' : ''}>Lon</option></select><button class="icon-btn delete" type="button" data-remove-item aria-label="Xóa dòng bia" title="Xóa dòng">${icon('close')}</button><div class="line-help"></div>`;
     $('transaction-items').append(row);
     updateEditor();
   }
@@ -383,12 +493,12 @@ globalThis.Inventory = (() => {
     const balances = I.dateValid(date) ? I.snapshot(base, date).products : [];
     let total = 0;
     document.querySelectorAll('.item-row').forEach(row => {
-      const p = balances.find(p => p.id === row.querySelector('select').value);
+      const p = balances.find(p => p.id === row.querySelector('.item-product').value);
       const q = Number(row.querySelector('input').value);
-      if (I.quantityValid(q)) total += q;
-      row.querySelector('.line-help').textContent = p ? p.initialDate > date ? `Bắt đầu theo dõi từ ${dateText(p.initialDate)}` : `Tồn cuối ngày ${dateText(date)}: ${format(p.stock)} thùng${editingId ? ' (chưa tính phiếu đang sửa)' : ''}` : '';
+      if (I.quantityValid(q)) total += q * (row.querySelector('.item-unit').value === 'can' ? 1 : 24);
+      row.querySelector('.line-help').textContent = p ? p.initialDate > date ? `Bắt đầu theo dõi từ ${dateText(p.initialDate)}` : `Tồn cuối ngày ${dateText(date)}: ${I.quantityText(p.stockCans)}${editingId ? ' (chưa tính phiếu đang sửa)' : ''}` : '';
     });
-    $('editor-total').textContent = `${Number.isSafeInteger(total) ? format(total) : 'Vượt giới hạn'} thùng`;
+    $('editor-total').textContent = Number.isSafeInteger(total) ? I.quantityText(total) : 'Vượt giới hạn tính toán';
     $('transaction-date-hint').textContent = date > I.today() ? 'Phiếu tương lai: số tồn hôm nay chưa thay đổi khi lưu.' : 'Có thể chọn ngày trước đó để bổ sung sổ kho.';
     document.querySelectorAll('[data-remove-item]').forEach(button => { button.disabled = $('transaction-items').children.length <= 1; });
   }
@@ -401,7 +511,9 @@ globalThis.Inventory = (() => {
   }
   function resetEditor(type = transactionType) {
     editingId = null; editingOriginal = null;
+    const operator = $('transaction-operator').value;
     $('transaction-form').reset(); $('transaction-date').value = I.today();
+    $('transaction-operator').value = operator;
     $('transaction-items').innerHTML = ''; addItem();
     $('editor-title').textContent = 'Tạo phiếu nhanh';
     $('editor-subtitle').textContent = 'Nhập nhiều loại bia trong một lần';
@@ -420,7 +532,7 @@ globalThis.Inventory = (() => {
     $('confirm-dialog').showModal();
   }
   function newTransaction(type) {
-    const hasDraft = editingId || $('transaction-note').value.trim() || [...document.querySelectorAll('.item-row')].some(row => row.querySelector('select').value || row.querySelector('input').value);
+    const hasDraft = editingId || $('transaction-note').value.trim() || [...document.querySelectorAll('.item-row')].some(row => row.querySelector('.item-product').value || row.querySelector('input').value);
     const start = () => { resetEditor(type); focusEditor(); };
     if (hasDraft) confirmAction('Tạo phiếu mới?', 'Nội dung phiếu đang nhập chưa được lưu. Bỏ nội dung này để tạo phiếu mới?', 'Tạo phiếu mới', start);
     else start();
@@ -430,14 +542,14 @@ globalThis.Inventory = (() => {
     if (!t) return;
     const begin = () => {
       editingId = t.id; editingOriginal = JSON.stringify(t);
-      $('transaction-date').value = t.date; $('transaction-note').value = t.note;
+      $('transaction-date').value = t.date; $('transaction-note').value = t.note; $('transaction-operator').value = t.operator || '';
       $('transaction-items').innerHTML = ''; t.items.forEach(addItem);
       $('editor-title').textContent = 'Chỉnh sửa phiếu';
       $('editor-subtitle').textContent = `Ngày ${dateText(t.date)} · ${t.items.length} loại bia`;
       $('cancel-edit').hidden = false; showError('transaction-error', '');
       setType(t.type); refreshEditorProducts(); focusEditor();
     };
-    const hasDraft = editingId || $('transaction-note').value.trim() || [...document.querySelectorAll('.item-row')].some(row => row.querySelector('select').value || row.querySelector('input').value);
+    const hasDraft = editingId || $('transaction-note').value.trim() || [...document.querySelectorAll('.item-row')].some(row => row.querySelector('.item-product').value || row.querySelector('input').value);
     if (hasDraft) confirmAction('Mở phiếu để chỉnh sửa?', 'Nội dung phiếu đang nhập chưa được lưu. Bỏ nội dung này để chỉnh sửa phiếu đã chọn?', 'Mở phiếu', begin);
     else begin();
   }
@@ -475,15 +587,32 @@ globalThis.Inventory = (() => {
     try {
       if (editingId && JSON.stringify(existingEditedTransaction()) !== editingOriginal) throw new Error('Phiếu này đã bị thay đổi hoặc xóa ở tab khác. Hãy mở lại phiếu từ lịch sử.');
       const allowed = new Set(allowedProducts().map(p => p.id));
-      const items = [...document.querySelectorAll('.item-row')].map(row => ({ productId: row.querySelector('select').value, quantity: Number(row.querySelector('input').value) }));
+      const items = [...document.querySelectorAll('.item-row')].map(row => ({ productId: row.querySelector('.item-product').value, quantity: Number(row.querySelector('input').value), unit: row.querySelector('.item-unit').value }));
       if (items.some(item => !allowed.has(item.productId))) throw new Error('Không thể tạo phiếu cho loại bia đã ngừng dùng. Hãy bật sử dụng lại trong danh mục.');
-      const t = { id: editingId || id(), date: $('transaction-date').value, type: transactionType, items, note: $('transaction-note').value };
+      const t = { id: editingId || id(), date: $('transaction-date').value, type: transactionType, items, note: $('transaction-note').value, operator: $('transaction-operator').value.trim() };
+      if (!t.operator) throw new Error('Vui lòng nhập tên người thực hiện nhập hoặc xuất kho.');
       const edited = !!editingId;
       const next = { ...state, transactions: edited ? state.transactions.map(old => old.id === editingId ? t : old) : [...state.transactions, t] };
       persist(next);
       resetEditor();
       notify(edited ? 'Đã cập nhật phiếu và tính lại tồn kho.' : `Đã lưu phiếu ${t.type === 'in' ? 'nhập' : 'xuất'} kho.`);
     } catch (error) { showError('transaction-error', error.message); $('transaction-error').scrollIntoView({ block: 'nearest' }); }
+  });
+  $('open-review').addEventListener('click', openReview);
+  $('review-from').addEventListener('change', renderReviewPreview);
+  $('review-to').addEventListener('change', renderReviewPreview);
+  $('review-form').addEventListener('submit', event => {
+    event.preventDefault();
+    try {
+      const from = $('review-from').value, to = $('review-to').value;
+      if (!I.dateValid(from) || !I.dateValid(to) || from > to || to > I.today()) throw new Error('Khoảng ngày xác nhận không hợp lệ.');
+      if (reviewPreviewSnapshot === null || I.reviewSnapshot(state, from, to) !== reviewPreviewSnapshot) {
+        renderReviewPreview(); throw new Error('Phiếu đã thay đổi trong lúc xem. Danh sách đã cập nhật; hãy kiểm tra lại trước khi xác nhận.');
+      }
+      const review = { id: id(), from, to, reviewer: $('reviewer-name').value.trim(), confirmedAt: new Date().toISOString(), snapshot: reviewPreviewSnapshot };
+      persist({ ...state, reviews: [...state.reviews, review] });
+      $('review-dialog').close(); notify('Đã lưu người xác nhận và khoảng ngày đã xem.');
+    } catch (error) { showError('review-error', error.message); }
   });
   $('product-form').addEventListener('submit', event => {
     event.preventDefault();
@@ -510,9 +639,9 @@ globalThis.Inventory = (() => {
   $('cancel-edit').addEventListener('click', () => confirmAction('Hủy chỉnh sửa?', 'Bỏ các thay đổi chưa lưu của phiếu này?', 'Hủy chỉnh sửa', () => resetEditor()));
   $('snapshot-date').addEventListener('change', () => {
     if (!I.dateValid($('snapshot-date').value)) { $('snapshot-date').value = I.today(); notify('Ngày không hợp lệ, đã trở về hôm nay.', true); }
-    renderOverview();
+    renderOverview(); renderReviews();
   });
-  $('snapshot-today').addEventListener('click', () => { $('snapshot-date').value = I.today(); renderOverview(); });
+  $('snapshot-today').addEventListener('click', () => { $('snapshot-date').value = I.today(); renderOverview(); renderReviews(); });
   $('history-filters').addEventListener('submit', event => event.preventDefault());
   $('history-filters').addEventListener('change', () => { historyPage = 1; renderHistory(); });
   $('history-filters').addEventListener('reset', () => setTimeout(() => { historyPage = 1; renderHistory(); }, 0));
@@ -534,7 +663,7 @@ globalThis.Inventory = (() => {
       const imported = I.validate(parsed);
       const balance = I.snapshot(imported, I.today());
       const expectedRaw = currentRaw;
-      confirmAction('Khôi phục dữ liệu kho?', `File: ${file.name}\n${imported.products.length} loại bia · ${imported.transactions.length} phiếu\nTồn cuối hôm nay: ${format(balance.total)} thùng\n\nToàn bộ dữ liệu hiện tại và phiếu đang nhập sẽ được thay thế. Hãy chắc chắn bạn đã tải bản sao trước khi tiếp tục.`, 'Khôi phục dữ liệu', () => {
+      confirmAction('Khôi phục dữ liệu kho?', `File: ${file.name}\n${imported.products.length} loại bia · ${imported.transactions.length} phiếu · ${imported.reviews.length} mốc xác nhận\nTồn cuối hôm nay: ${I.quantityText(balance.totalCans)}\n\nToàn bộ dữ liệu hiện tại và phiếu đang nhập sẽ được thay thế. Hãy chắc chắn bạn đã tải bản sao trước khi tiếp tục.`, 'Khôi phục dữ liệu', () => {
         if (currentRaw !== expectedRaw) throw new Error('Dữ liệu đã thay đổi trong lúc chờ khôi phục. Hãy hủy và chọn lại file để kiểm tra.');
         persist(imported, true); resetEditor(); historyPage = 1;
         $('snapshot-date').value = I.today(); renderAll(); notify('Đã khôi phục dữ liệu và kiểm tra tồn kho.');

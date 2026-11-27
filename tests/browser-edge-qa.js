@@ -11,11 +11,13 @@ async (page) => {
   await page.locator('[data-page=history]').click();
   await page.locator('[data-edit-transaction=receipt]').click();
   await page.locator('.item-quantity').fill('8');
+  await page.locator('#transaction-operator').fill('Minh');
   const other = await page.context().newPage();
   await other.goto('http://127.0.0.1:8765');
   await other.locator('[data-page=history]').click();
   await other.locator('[data-edit-transaction=receipt]').click();
   await other.locator('.item-quantity').fill('6');
+  await other.locator('#transaction-operator').fill('Hương');
   await other.locator('#save-transaction').click();
   await page.locator('#total-stock').filter({ hasText: '16' }).waitFor();
   check(await page.locator('.item-quantity').inputValue() === '8', 'Tab khác cập nhật mà giữ phiếu nháp');
@@ -28,6 +30,7 @@ async (page) => {
   await page.reload();
   await page.locator('.item-product').selectOption('tiger');
   await page.locator('.item-quantity').fill('1');
+  await page.locator('#transaction-operator').fill('Minh');
   await page.evaluate(() => {
     const data = JSON.parse(localStorage.getItem('kho-bia.data.v1'));
     data.products[0].name = 'Tiger mới';
