@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173e35">
+  <meta name="description" content="Quản lý nhập, xuất, tồn kho bia hằng ngày. Dữ liệu lưu trên trình duyệt, sử dụng ngay không cần cài đặt.">
+  <title>Kho Bia · Quản lý nhập xuất tồn</title>
+</head>
+<body>
+  <main><h1>Kho Bia</h1><p>Quản lý nhập · xuất · tồn hằng ngày</p></main>
+<script id="inventory-core">
+'use strict';
+// Tồn kho là số dư cuối ngày; cùng ngày tính toàn bộ nhập trước toàn bộ xuất.
+globalThis.Inventory = (() => {
+  const VERSION = 1;
+  const MAX_PRODUCTS = 500;
+  const MAX_TRANSACTIONS = 100000;
+  const fail = message => { throw new Error(message); };
+  const dateValid = value => {
+    if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value) || value < '1900-01-01') return false;
+    const date = new Date(value + 'T00:00:00Z');
+    return Number.isFinite(date.getTime()) && date.toISOString().slice(0, 10) === value;
+  };
+  const today = () => {
+    const date = new Date();
+    return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+  };
+  const quantityValid = (value, zero = false) => Number.isSafeInteger(value) && value >= (zero ? 0 : 1);
+  const textValid = (value, max) => typeof value === 'string' && value.length <= max;
+  const idValid = value => typeof value === 'string' && /^[a-zA-Z0-9_-]{1,100}$/.test(value);
+  function add(a, b) {
+    const result = a + b;
+    if (!Number.isSafeInteger(result)) fail('Số lượng vượt giới hạn tính toán an toàn.');
+    return result;
+  }
+  function validate(input) {
+    if (!input || typeof input !== 'object' || input.version !== VERSION || !Array.isArray(input.products) || !Array.isArray(input.transactions)) {
+      fail('File không đúng định dạng sao lưu Kho Bia (phiên bản 1).');
+    }
+    if (input.products.length > MAX_PRODUCTS || input.transactions.length > MAX_TRANSACTIONS) fail('Dữ liệu vượt giới hạn 500 loại bia hoặc 100.000 phiếu.');
+    const ids = new Set();
+    const names = new Set();
+    const products = input.products.map(p => {
+      if (!p || !idValid(p.id) || ids.has(p.id)) fail('Mã loại bia không hợp lệ hoặc bị trùng.');
+      if (!textValid(p.name, 80) || !p.name.trim()) fail('Tên loại bia phải có từ 1 đến 80 ký tự.');
+      const name = p.name.trim().normalize('NFC');
+      const key = name.toLocaleLowerCase('vi');
+      if (names.has(key)) fail(`Tên loại bia “${name}” bị trùng.`);
+      if (!quantityValid(p.initialStock, true) || !dateValid(p.initialDate) || typeof p.active !== 'boolean') fail(`Tồn đầu kỳ hoặc ngày bắt đầu của ${name} không hợp lệ.`);
+      ids.add(p.id); names.add(key);
+      return { id: p.id, name, initialStock: p.initialStock, initialDate: p.initialDate, active: p.active };
+    });
+    const byId = new Map(products.map(p => [p.id, p]));
+    const transactionIds = new Set();
+    const transactions = input.transactions.map(t => {
+      if (!t || !idValid(t.id) || transactionIds.has(t.id)) fail('Mã phiếu không hợp lệ hoặc bị trùng.');
+      if (!dateValid(t.date) || !['in', 'out'].includes(t.type) || !textValid(t.note, 1000)) fail('Ngày, hình thức hoặc ghi chú của phiếu không hợp lệ.');
+      if (!Array.isArray(t.items) || t.items.length < 1 || t.items.length > MAX_PRODUCTS) fail('Mỗi phiếu cần ít nhất một loại bia.');
+      transactionIds.add(t.id);
+      const itemIds = new Set();
+      const items = t.items.map(item => {
+        const p = item && byId.get(item.productId);
+        if (!p || itemIds.has(item.productId) || !quantityValid(item.quantity)) fail('Loại bia bị trùng, không tồn tại hoặc số thùng không phải số nguyên dương.');
+        if (t.date < p.initialDate) fail(`Phiếu ${p.name} ngày ${t.date} đứng trước ngày bắt đầu ${p.initialDate}.`);
+        itemIds.add(item.productId);
+        return { productId: item.productId, quantity: item.quantity };
+      });
+      return { id: t.id, date: t.date, type: t.type, items, note: t.note.trim() };
+    });
+    const data = { version: VERSION, products, transactions };
+    checkTimeline(data);
+    return data;
+  }
+  function checkTimeline(data) {
+    const events = data.products.map(p => ({ date: p.initialDate, rank: 0, productId: p.id, quantity: p.initialStock }));
+    for (const t of data.transactions) for (const item of t.items) events.push({ date: t.date, rank: t.type === 'in' ? 1 : 2, productId: item.productId, quantity: t.type === 'in' ? item.quantity : -item.quantity });
+    events.sort((a, b) => a.date.localeCompare(b.date) || a.rank - b.rank);
+    const balances = new Map();
+    const names = new Map(data.products.map(p => [p.id, p.name]));
+    let total = 0;
+    for (const event of events) {
+      const balance = add(balances.get(event.productId) || 0, event.quantity);
+      if (balance < 0) fail(`Không đủ tồn kho: ${names.get(event.productId)} thiếu ${-balance} thùng vào ngày ${event.date}. Hãy kiểm tra phiếu nhập, xuất và tồn đầu kỳ.`);
+      balances.set(event.productId, balance);
+      total = add(total, event.quantity);
+    }
+  }
+  function snapshot(data, date) {
+    if (!dateValid(date)) fail('Ngày xem tồn kho không hợp lệ.');
+    const balances = new Map(data.products.map(p => [p.id, p.initialDate <= date ? p.initialStock : 0]));
+    let incoming = 0, outgoing = 0;
+    for (const t of data.transactions) {
+      if (t.date > date) continue;
+      for (const item of t.items) {
+        balances.set(item.productId, add(balances.get(item.productId) || 0, t.type === 'in' ? item.quantity : -item.quantity));
+        if (t.date === date) {
+          if (t.type === 'in') incoming = add(incoming, item.quantity);
+          else outgoing = add(outgoing, item.quantity);
+        }
+      }
+    }
+    const products = data.products.map(p => ({ ...p, stock: balances.get(p.id) }));
+    return { products, total: products.reduce((sum, p) => add(sum, p.stock), 0), incoming, outgoing };
+  }
+  function filterTransactions(data, filters = {}) {
+    return data.transactions.filter(t => (!filters.from || t.date >= filters.from) && (!filters.to || t.date <= filters.to) && (!filters.type || t.type === filters.type) && (!filters.productId || t.items.some(i => i.productId === filters.productId))).sort((a, b) => b.date.localeCompare(a.date));
+  }
+  // Chặn công thức từ trường văn bản khi mở CSV trong Excel.
+  function csvCell(value, isText = false) {
+    let text = String(value);
+    if (isText && /^[\s\uFEFF]*[=+\-@\t\r\n]/.test(text)) text = "'" + text;
+    return '"' + text.replaceAll('"', '""') + '"';
+  }
+  function csv(data, filters = {}) {
+    const names = new Map(data.products.map(p => [p.id, p.name]));
+    const rows = [['Ngày giao dịch', 'Loại bia', 'Số lượng nhập (thùng)', 'Số lượng xuất (thùng)', 'Ghi chú', 'Mã phiếu'].map(v => csvCell(v)).join(',')];
+    for (const t of filterTransactions(data, filters)) for (const item of t.items) {
+      if (filters.productId && item.productId !== filters.productId) continue;
+      rows.push([csvCell(t.date), csvCell(names.get(item.productId), true), csvCell(t.type === 'in' ? item.quantity : 0), csvCell(t.type === 'out' ? item.quantity : 0), csvCell(t.note, true), csvCell(t.id, true)].join(','));
+    }
+    return '\uFEFF' + rows.join('\r\n');
+  }
+  const empty = () => ({ version: VERSION, products: [], transactions: [] });
+  return { VERSION, today, dateValid, quantityValid, validate, snapshot, filterTransactions, csv, empty };
+})();
+</script>
+</body>
+</html>
