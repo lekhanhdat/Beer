@@ -4,11 +4,100 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#173e35">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='12' fill='%23173e35'/%3E%3Cpath d='m24 10 14 8-14 8-14-8 14-8Zm-14 8v15l14 8 14-8V18M24 26v15' fill='none' stroke='white' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E">
   <meta name="description" content="Quản lý nhập, xuất, tồn kho bia hằng ngày. Dữ liệu lưu trên trình duyệt, sử dụng ngay không cần cài đặt.">
   <title>Kho Bia · Quản lý nhập xuất tồn</title>
+  <style>
+    :root{color-scheme:light;--bg:#f4f6f5;--surface:#fff;--ink:#172e29;--muted:#64746e;--line:#e2e9e5;--green:#17634c;--green-dark:#173e35;--green-soft:#edf5ef;--orange:#aa571e;--orange-soft:#fff2e6;--red:#b13f36;--radius:16px;font-family:Inter,"Segoe UI",Arial,sans-serif;font-size:16px}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);line-height:1.5}button,input,select,textarea{font:inherit}button,a,input,select,textarea{-webkit-tap-highlight-color:transparent}button{cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}button:focus-visible,a:focus-visible{outline:3px solid #69a58b;outline-offset:3px}input:focus,select:focus,textarea:focus{outline:2px solid #69a58b;outline-offset:1px}button{border:0}a{color:var(--green)}h1,h2,h3,p{margin:0}h1{font-size:2rem;letter-spacing:-1px;line-height:1.25}h2{font-size:1.125rem;letter-spacing:-.3px}h3{font-size:1rem}svg.icon{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}.hidden,[hidden]{display:none!important}.muted{color:var(--muted)}.small{font-size:.875rem}.eyebrow{font-size:.75rem;font-weight:700;letter-spacing:1.8px;color:var(--green);margin-bottom:8px}.nowrap{white-space:nowrap}.num{font-variant-numeric:tabular-nums}.align-right{text-align:right}
+    .topbar{background:var(--surface);border-bottom:1px solid var(--line)}.topbar-inner{max-width:1440px;margin:auto;min-height:88px;padding:0 40px;display:flex;align-items:center;gap:48px}.brand{display:flex;align-items:center;gap:12px;color:var(--ink);text-decoration:none;white-space:nowrap}.brand-mark{height:42px;width:42px;display:grid;place-items:center;background:var(--green-dark);border-radius:12px;color:#fff}.brand-mark svg{width:25px;height:25px}.brand-name{font-weight:750;font-size:1.25rem;letter-spacing:-.5px}.brand-sub{font-size:.75rem;color:var(--muted)}.tabs{display:flex;align-self:stretch;gap:28px}.tab{position:relative;background:none;color:var(--muted);padding:0 2px;font-size:.9375rem;font-weight:600;white-space:nowrap}.tab[aria-selected=true]{color:var(--green)}.tab[aria-selected=true]:after{content:"";position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--green);border-radius:3px 3px 0 0}.local-status{margin-left:auto;font-size:.8125rem;color:var(--muted);display:flex;align-items:center;gap:7px}.local-status svg{width:17px}
+    .workspace{max-width:1440px;padding:36px 40px 24px;margin:auto}.page-heading{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:26px}.subtitle{margin-top:8px;color:var(--muted);font-size:.9375rem}.heading-actions{display:flex;gap:10px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 16px;border-radius:9px;background:var(--surface);border:1px solid var(--line);color:var(--ink);font-size:.875rem;font-weight:600;line-height:1.35}.btn:hover{background:#f2f5f3}.btn.primary{background:var(--green);border-color:var(--green);color:white}.btn.primary:hover{background:#104d3b}.btn.outgoing{background:var(--orange-soft);border-color:#f2dcc8;color:var(--orange)}.btn.danger{color:var(--red);background:#fff1ef;border-color:#efcfcb}.btn.ghost{background:transparent}.btn.link{color:var(--green);border:0;padding:5px 0;min-height:36px;background:transparent}.btn.compact{min-height:36px;padding:6px 11px}.icon-btn{width:36px;height:36px;background:transparent;color:var(--muted);border:1px solid transparent;border-radius:8px;display:inline-grid;place-items:center}.icon-btn:hover{background:var(--bg);color:var(--ink)}.icon-btn.delete:hover{color:var(--red);background:#fff1ef}.icon-btn svg{width:18px;height:18px}
+    .date-control{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:.875rem}.date-control input{width:164px;background:var(--surface)}input,select,textarea{border:1px solid #d7e1db;border-radius:8px;background:#fff;color:var(--ink);min-height:44px;padding:10px 12px;max-width:100%;width:100%;font-size:.9375rem}input[type=date]{min-width:0}input[type=number]{font-variant-numeric:tabular-nums}textarea{resize:vertical;min-height:76px}select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%2364746e' stroke-width='1.5'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;padding-right:34px}label{display:block;font-size:.875rem;font-weight:600;margin-bottom:7px}.field{margin-bottom:17px}.field-hint{color:var(--muted);font-size:.8125rem;margin-top:6px}.field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}.optional{font-weight:400;color:var(--muted)}
+    .summary-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}.summary-toolbar>p{font-size:.875rem;color:var(--muted)}.stats{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:18px;margin-bottom:26px}.stat{border:1px solid var(--line);background:white;border-radius:var(--radius);padding:22px 24px;position:relative;overflow:hidden}.stat.total{background:var(--green-dark);border-color:var(--green-dark);color:white}.stat-label{display:flex;align-items:center;gap:9px;font-size:.875rem;font-weight:500;color:var(--muted)}.stat.total .stat-label{color:#d3e3db}.stat-icon{display:grid;place-items:center;border-radius:8px;width:31px;height:31px;background:var(--green-soft);color:var(--green)}.stat.total .stat-icon{background:#ffffff15;color:#d6e9df}.stat.out .stat-icon{background:var(--orange-soft);color:var(--orange)}.stat-value{font-size:2.75rem;font-weight:700;letter-spacing:-1.5px;margin:9px 0 3px;line-height:1.2}.stat-value span{font-size:.875rem;font-weight:400;letter-spacing:0;margin-left:6px;color:var(--muted)}.stat.total .stat-value span{color:#d3e3db}.stat-caption{font-size:.8125rem;color:var(--muted)}.stat.total .stat-caption{color:#c1d8cc}
+    .overview-grid{display:grid;grid-template-columns:minmax(0,1fr) 380px;align-items:start;gap:24px}.left-column{min-width:0;display:grid;gap:24px}.panel{border:1px solid var(--line);background:var(--surface);border-radius:var(--radius);overflow:hidden}.panel-head{padding:21px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line)}.panel-head p{font-size:.8125rem;color:var(--muted);margin-top:3px}.panel-body{padding:24px}.count{font-size:.75rem;font-weight:500;background:#f0f4f1;color:var(--muted);border-radius:6px;padding:3px 7px;margin-left:7px;vertical-align:middle}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:.875rem;text-align:left}thead{background:#fafbf9;color:var(--muted)}th{font-size:.8125rem;font-weight:500;white-space:nowrap;padding:12px 22px;border-bottom:1px solid var(--line)}td{padding:16px 22px;border-bottom:1px solid #edf1ee;vertical-align:middle}tbody tr:last-child td{border-bottom:0}tbody tr:hover{background:#fcfdfb}.beer-name{display:flex;align-items:center;gap:12px;min-width:150px}.beer-mark{height:37px;width:37px;border-radius:10px;background:#edf3ef;color:#406a52;font-size:.8125rem;font-weight:700;display:grid;place-items:center;flex-shrink:0}.beer-text{font-weight:600;word-break:break-word}.beer-sub{font-size:.75rem;font-weight:400;color:var(--muted)}.stock-quantity{font-size:1.375rem;font-weight:700;line-height:1.2}.stock-quantity.zero{color:#8a9690}.unit{color:var(--muted);font-size:.8125rem;margin-left:5px}.tag{font-size:.75rem;font-weight:600;padding:5px 8px;display:inline-flex;align-items:center;white-space:nowrap;border-radius:6px;background:var(--green-soft);color:var(--green)}.tag.out{color:var(--orange);background:var(--orange-soft)}.tag.inactive{background:#f0f2f0;color:var(--muted)}.tag.zero{color:var(--orange);background:var(--orange-soft)}.stock-foot{display:flex;align-items:center;gap:7px;padding:13px 24px;border-top:1px solid var(--line);background:#fafcf9;font-size:.8125rem;color:var(--muted)}.stock-foot svg{width:16px;height:16px}
+    .quick-panel{scroll-margin-top:20px}.quick-panel .panel-head{background:#fafcf9}.quick-panel .panel-body{padding:21px 22px}.type-toggle{display:grid;grid-template-columns:1fr 1fr;gap:5px;padding:5px;background:#f1f4f1;border-radius:10px;margin-bottom:20px}.type-btn{border-radius:7px;padding:10px;min-height:42px;background:transparent;color:var(--muted);font-size:.875rem;font-weight:600;display:flex;align-items:center;justify-content:center;gap:7px}.type-btn[aria-pressed=true]{background:var(--green);color:white;box-shadow:0 2px 4px #163e3510}.type-btn.out[aria-pressed=true]{background:var(--orange);color:#fff}.item-labels,.item-row{display:grid;grid-template-columns:minmax(0,1fr) 80px 30px;gap:8px}.item-labels{font-size:.8125rem;font-weight:600;margin-bottom:7px}.item-row{margin-bottom:11px}.item-row select{font-size:.875rem;padding-left:9px}.item-row input{padding:10px 8px;text-align:center}.item-row .icon-btn{width:30px;height:44px}.line-help{grid-column:1/-1;font-size:.75rem;color:var(--muted);margin-top:-4px}.add-line{margin-bottom:14px}.editor-summary{display:flex;justify-content:space-between;margin:20px 0 14px;padding-top:16px;border-top:1px solid var(--line);font-size:.875rem}.editor-summary strong{font-size:1rem}.full-width{width:100%}.form-error,.notice{font-size:.875rem;border-radius:9px;padding:12px 14px;margin-bottom:16px;overflow-wrap:anywhere}.form-error{background:#fff0ed;color:#95362e;border:1px solid #f2cfc9}.notice{background:#f2f7f1;color:#3c6351;border:1px solid #dce9db}.notice.warning{background:#fff7ea;color:#87531c;border-color:#f2e0bf}.notice p+p{margin-top:6px}.editor-footer{font-size:.75rem;color:var(--muted);text-align:center;margin-top:11px}.empty{text-align:center;padding:44px 24px}.empty svg{width:38px;height:38px;color:#759781;margin-bottom:12px}.empty h3{font-size:1rem;margin-bottom:6px}.empty p{font-size:.875rem;color:var(--muted);max-width:360px;margin:0 auto 16px}.recent-row td{padding-top:14px;padding-bottom:14px}.signed{font-weight:650;color:var(--green);white-space:nowrap}.signed.out{color:var(--orange)}
+    .filters{padding:20px 24px;display:grid;grid-template-columns:1fr 1fr 1.3fr 1fr auto;gap:14px;align-items:end;border-bottom:1px solid var(--line)}.filters label{font-size:.8125rem}.history-count{padding:12px 24px;border-bottom:1px solid var(--line);font-size:.8125rem;color:var(--muted);display:flex;justify-content:space-between;align-items:center;gap:10px}.notes-cell{min-width:140px;max-width:260px;white-space:pre-wrap;overflow-wrap:anywhere}.history-table{min-width:880px}.qty-in{color:var(--green);font-weight:650}.qty-out{color:var(--orange);font-weight:650}.row-actions{display:flex;gap:2px;justify-content:flex-end}.pagination{display:flex;justify-content:space-between;align-items:center;padding:14px 24px;border-top:1px solid var(--line);gap:12px;font-size:.8125rem;color:var(--muted)}.pagination-controls{display:flex;gap:8px}.catalog-table{min-width:650px}.backup-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}.backup-card .panel-body{padding:28px}.backup-icon{height:46px;width:46px;display:grid;place-items:center;border-radius:12px;background:var(--green-soft);color:var(--green);margin-bottom:18px}.backup-card h2{margin-bottom:10px}.backup-card p{color:var(--muted);font-size:.9375rem;margin-bottom:20px;max-width:480px}.backup-card .btn{margin:0 8px 8px 0}.backup-info{margin-top:24px;padding:24px;display:flex;gap:14px}.backup-info>svg{color:var(--green);margin-top:3px}.backup-info p{font-size:.875rem;color:var(--muted);margin-top:6px}.backup-info ul{padding-left:20px;color:var(--muted);font-size:.875rem;line-height:1.9;margin-bottom:0}
+    footer{display:flex;justify-content:space-between;gap:16px;padding:30px 2px 0;color:var(--muted);font-size:.75rem}footer button{color:var(--muted);font-size:.75rem;background:transparent;text-decoration:underline;text-underline-offset:3px}.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);padding:13px 20px;background:var(--green-dark);color:white;border-radius:10px;box-shadow:0 4px 20px #173e3522;font-size:.875rem;z-index:20;max-width:calc(100% - 32px);width:max-content}.toast.error{background:#92382f}dialog{border:1px solid var(--line);padding:0;border-radius:18px;color:var(--ink);width:min(500px,calc(100% - 32px));max-height:90dvh;box-shadow:0 24px 70px #132d2933}dialog::backdrop{background:#10251e70;backdrop-filter:blur(3px)}.dialog-head{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 24px;border-bottom:1px solid var(--line)}.dialog-body{padding:24px}.dialog-actions{display:flex;gap:10px;justify-content:flex-end;border-top:1px solid var(--line);padding:16px 24px;background:#fafcf9}.dialog-actions .btn{min-width:85px}.confirm-copy{white-space:pre-line;line-height:1.7;font-size:.9375rem}.help-list{padding-left:20px;font-size:.9375rem;line-height:1.7;margin:0}.help-list li+li{margin-top:12px}.storage-block{margin-bottom:24px}.storage-block button{margin-top:10px}noscript{display:block;padding:30px;background:#fff0ed;color:#95362e}
+    @media(min-width:1200px){.quick-panel{position:sticky;top:20px}}
+    @media(max-width:1100px){.topbar-inner{gap:28px;padding:0 24px}.tabs{gap:22px}.workspace{padding:28px 24px 24px}.overview-grid{grid-template-columns:minmax(0,1fr) 340px;gap:18px}.panel-head{padding:18px}.panel-body{padding:18px}th,td{padding-left:18px;padding-right:18px}.local-status span{display:none}.filters{grid-template-columns:1fr 1fr;gap:12px}.filters .btn{justify-self:start}.stat{padding:20px}.recent-table .recent-note{display:none}}
+    @media(max-width:800px){.topbar-inner{flex-wrap:wrap;gap:0;padding:16px 20px 0;min-height:auto}.brand{margin-bottom:15px}.brand-sub{display:none}.local-status{margin-bottom:15px}.local-status span{display:inline}.tabs{order:3;width:100%;justify-content:space-between;gap:12px;overflow:auto;min-height:48px}.tab{font-size:.875rem;padding-bottom:12px}.workspace{padding:26px 20px 20px}.overview-grid{grid-template-columns:1fr}.quick-panel{grid-row:1}.quick-panel .panel-body{padding:20px}.quick-panel .type-toggle{margin-bottom:16px}.stats{gap:12px;grid-template-columns:1fr 1fr}.stat.total{grid-column:1/-1}.stat-value{font-size:2.25rem}.stat.total .stat-value{font-size:3rem}.stat{padding:20px}.stat-caption{font-size:.75rem}.page-heading{align-items:flex-start}.heading-actions .btn{padding:10px 12px}.heading-actions .btn svg{display:none}h1{font-size:1.75rem}.backup-grid{grid-template-columns:1fr}.stock-table th:nth-child(3),.stock-table td:nth-child(3){display:none}.stock-table td{padding-top:14px;padding-bottom:14px}.summary-toolbar{align-items:flex-start;flex-wrap:wrap}.recent-note{display:none}.quick-panel .field-row{grid-template-columns:1fr}.quick-panel #transaction-note{min-height:60px}footer{flex-direction:column;gap:7px;padding-top:24px}.date-control{flex-wrap:wrap}.date-control input{width:155px}.backup-info{padding:20px}.backup-info ul{line-height:1.7}}
+    @media(max-width:480px){.workspace{padding-left:14px;padding-right:14px}.topbar-inner{padding-left:16px;padding-right:16px}.page-heading{flex-direction:column;gap:16px;margin-bottom:22px}.heading-actions{width:100%}.heading-actions .btn{flex:1}.stats{gap:10px}.stat{padding:16px}.stat-label{font-size:.8125rem;gap:6px}.stat-icon{width:27px;height:27px}.stat-value{font-size:2rem}.stat-caption{line-height:1.5}.summary-toolbar>p{display:none}.stock-table th,.stock-table td{padding-left:16px;padding-right:16px}.beer-name{gap:9px}.beer-mark{width:32px;height:32px;border-radius:8px}.stock-quantity{font-size:1.25rem}.unit{display:block;margin-left:0;font-size:.75rem}.recent-table th,.recent-table td{padding-left:14px;padding-right:14px}.recent-table .beer-name{min-width:100px}.recent-table .beer-mark{display:none}.filters{padding:16px;gap:10px}.filters input,.filters select{font-size:.875rem;padding-left:9px}.panel-head{padding:17px 16px}.panel-head .btn{font-size:.8125rem}.stock-foot{padding:12px 16px;font-size:.75rem}.pagination{padding:14px 16px;flex-wrap:wrap}.field-row{grid-template-columns:1fr}.dialog-body{padding:20px}.dialog-head{padding:18px 20px}.dialog-actions{padding:16px 20px}.local-status{font-size:.75rem}.local-status span{display:none}.notes-cell{max-width:220px}}
+    @media(prefers-reduced-motion:no-preference){.btn,.icon-btn{transition:background .15s,color .15s}}
+  </style>
 </head>
 <body>
-  <main><h1>Kho Bia</h1><p>Quản lý nhập · xuất · tồn hằng ngày</p></main>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+    <symbol id="i-box" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Z M3 8v9l9 5 9-5V8 M12 13v9 M7.5 5.5l9 5"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14 M5 12h14"/></symbol>
+    <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24"><path d="m15 5 4 4 M4 20l5-1L20 8a2.8 2.8 0 0 0-4-4L5 15l-1 5Z"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18 M9 6V3h6v3 M5 6l1 15h12l1-15 M10 10v7 M14 10v7"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12 M6 18 18 6"/></symbol>
+    <symbol id="i-save" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12l4 4v12a2 2 0 0 1-2 2Z M7 3v6h10V3 M7 21v-8h10v8"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 3 7v5c0 5 9 9 9 9s9-4 9-9V7l-9-4Z m-4 9 3 3 5-6"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Z M14 2v6h6 M8 13h8 M8 17h6"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6 M12 7v.1"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+  </svg>
+  <noscript>Vui lòng bật JavaScript trong trình duyệt để sử dụng Kho Bia.</noscript>
+  <header class="topbar"><div class="topbar-inner">
+    <a class="brand" href="#tong-quan" aria-label="Kho Bia — Tổng quan"><span class="brand-mark"><svg class="icon"><use href="#i-box"/></svg></span><div><div class="brand-name">Kho Bia<span style="color:#6f967d">.</span></div><div class="brand-sub">Sổ kho mỗi ngày</div></div></a>
+    <nav class="tabs" aria-label="Điều hướng chính">
+      <button class="tab" data-page="overview" aria-selected="true">Tổng quan</button>
+      <button class="tab" data-page="history" aria-selected="false">Lịch sử nhập xuất</button>
+      <button class="tab" data-page="catalog" aria-selected="false">Danh mục bia</button>
+      <button class="tab" data-page="backup" aria-selected="false">Sao lưu dữ liệu</button>
+    </nav>
+    <div class="local-status" id="local-status"><svg class="icon"><use href="#i-shield"/></svg><span>Lưu trên thiết bị này</span></div>
+  </div></header>
+  <main class="workspace">
+    <div id="storage-warning" class="notice warning storage-block" role="alert" hidden></div>
+    <section id="page-overview" aria-label="Tổng quan kho">
+      <div class="page-heading"><div><p class="eyebrow">SỔ KHO HẰNG NGÀY</p><h1>Tổng quan kho</h1><p class="subtitle" id="today-label"></p></div><div class="heading-actions"><button class="btn outgoing" data-new-type="out"><svg class="icon"><use href="#i-minus"/></svg>Xuất kho</button><button class="btn primary" data-new-type="in"><svg class="icon"><use href="#i-plus"/></svg>Nhập kho</button></div></div>
+      <div class="summary-toolbar"><p id="snapshot-caption">Số liệu tồn kho cuối ngày</p><div class="date-control"><label for="snapshot-date" style="margin:0;font-weight:400">Xem tồn ngày</label><input id="snapshot-date" type="date" min="1900-01-01" max="9999-12-31" required><button class="btn compact" id="snapshot-today">Hôm nay</button></div></div>
+      <div class="stats" aria-live="polite">
+        <article class="stat total"><div class="stat-label"><span class="stat-icon"><svg class="icon"><use href="#i-box"/></svg></span>Tổng tồn kho</div><div class="stat-value num" id="total-stock">0 <span>thùng</span></div><p class="stat-caption" id="total-caption">Số dư cuối ngày</p></article>
+        <article class="stat"><div class="stat-label"><span class="stat-icon"><svg class="icon"><use href="#i-plus"/></svg></span><span id="incoming-label">Nhập trong ngày</span></div><div class="stat-value num" id="daily-in">0 <span>thùng</span></div><p class="stat-caption" id="incoming-caption">Chưa có phiếu nhập</p></article>
+        <article class="stat out"><div class="stat-label"><span class="stat-icon"><svg class="icon"><use href="#i-minus"/></svg></span><span id="outgoing-label">Xuất trong ngày</span></div><div class="stat-value num" id="daily-out">0 <span>thùng</span></div><p class="stat-caption" id="outgoing-caption">Chưa có phiếu xuất</p></article>
+      </div>
+      <div class="overview-grid"><div class="left-column">
+        <section class="panel"><div class="panel-head"><div><h2>Tồn kho theo loại bia <span class="count" id="product-count">0 loại</span></h2><p id="stock-date-caption">Đơn vị tính: thùng</p></div><button class="btn link" data-go="catalog">Quản lý danh mục</button></div><div id="stock-list"></div><div class="stock-foot"><svg class="icon"><use href="#i-info"/></svg>Tồn = tồn đầu kỳ + tổng nhập − tổng xuất đến ngày đã chọn.</div></section>
+        <section class="panel"><div class="panel-head"><div><h2>Giao dịch gần đây</h2><p>5 phiếu mới nhất theo ngày giao dịch</p></div><button class="btn link" data-go="history">Xem tất cả</button></div><div id="recent-list"></div></section>
+      </div>
+      <aside class="panel quick-panel" id="quick-panel" aria-label="Tạo phiếu nhập xuất"><div class="panel-head"><div><h2 id="editor-title">Tạo phiếu nhanh</h2><p id="editor-subtitle">Nhập nhiều loại bia trong một lần</p></div><span class="stat-icon"><svg class="icon"><use href="#i-file"/></svg></span></div><div class="panel-body">
+        <form id="transaction-form">
+          <div class="type-toggle" aria-label="Hình thức giao dịch"><button type="button" class="type-btn" data-type="in" aria-pressed="true"><svg class="icon"><use href="#i-plus"/></svg>Nhập kho</button><button type="button" class="type-btn out" data-type="out" aria-pressed="false"><svg class="icon"><use href="#i-minus"/></svg>Xuất kho</button></div>
+          <div id="transaction-error" class="form-error" role="alert" hidden></div>
+          <div class="field"><label for="transaction-date">Ngày giao dịch</label><input type="date" id="transaction-date" min="1900-01-01" max="9999-12-31" required><p class="field-hint" id="transaction-date-hint">Có thể chọn ngày trước đó để bổ sung sổ kho.</p></div>
+          <div id="no-products" class="notice" hidden>Thêm loại bia vào danh mục để bắt đầu.<br><button type="button" class="btn link" id="add-first-product">Thêm loại bia</button></div>
+          <div class="item-labels"><span>Loại bia</span><span>Số thùng</span><span></span></div><div id="transaction-items"></div>
+          <button class="btn link add-line" id="add-item" type="button"><svg class="icon"><use href="#i-plus"/></svg>Thêm loại bia</button>
+          <div class="field"><label for="transaction-note">Ghi chú <span class="optional">(không bắt buộc)</span></label><textarea id="transaction-note" rows="2" maxlength="1000" placeholder="Ví dụ: Nhập bổ sung đầu tuần..."></textarea></div>
+          <div class="editor-summary"><span>Tổng số lượng</span><strong class="num" id="editor-total">0 thùng</strong></div>
+          <button class="btn primary full-width" type="submit" id="save-transaction"><svg class="icon"><use href="#i-check"/></svg><span id="save-transaction-label">Lưu phiếu nhập</span></button><button class="btn ghost full-width" type="button" id="cancel-edit" hidden style="margin-top:9px">Hủy chỉnh sửa</button>
+          <p class="editor-footer">Tồn kho được tự động cập nhật khi lưu phiếu.</p>
+        </form>
+      </div></aside></div>
+    </section>
+    <section id="page-history" aria-label="Lịch sử nhập xuất" hidden>
+      <div class="page-heading"><div><p class="eyebrow">SỔ GIAO DỊCH</p><h1>Lịch sử nhập xuất</h1><p class="subtitle">Tra cứu và điều chỉnh từng phiếu nhập, xuất kho.</p></div><div class="heading-actions"><button class="btn" id="history-csv"><svg class="icon"><use href="#i-file"/></svg>Xuất CSV</button><button class="btn primary" data-new-type="in"><svg class="icon"><use href="#i-plus"/></svg>Tạo phiếu</button></div></div>
+      <section class="panel"><form class="filters" id="history-filters"><div><label for="filter-from">Từ ngày</label><input type="date" id="filter-from" min="1900-01-01" max="9999-12-31"></div><div><label for="filter-to">Đến ngày</label><input type="date" id="filter-to" min="1900-01-01" max="9999-12-31"></div><div><label for="filter-product">Loại bia</label><select id="filter-product"><option value="">Tất cả loại bia</option></select></div><div><label for="filter-type">Hình thức</label><select id="filter-type"><option value="">Tất cả giao dịch</option><option value="in">Nhập kho</option><option value="out">Xuất kho</option></select></div><button class="btn ghost" type="reset">Bỏ lọc</button></form><div id="filter-error" class="form-error" style="margin:16px 24px" role="alert" hidden></div><div class="history-count" id="history-count"></div><div id="history-list"></div><div id="history-pagination" class="pagination" hidden></div></section>
+    </section>
+    <section id="page-catalog" aria-label="Danh mục bia" hidden>
+      <div class="page-heading"><div><p class="eyebrow">DANH MỤC KHO</p><h1>Danh mục bia</h1><p class="subtitle">Quản lý loại bia và khai báo số thùng tồn ban đầu.</p></div><button class="btn primary" id="add-product"><svg class="icon"><use href="#i-plus"/></svg>Thêm loại bia</button></div>
+      <div class="panel"><div class="panel-head"><div><h2>Các loại bia <span class="count" id="catalog-count">0 loại</span></h2><p>Số tồn hiển thị tại cuối ngày hôm nay.</p></div></div><div id="catalog-list"></div></div><div class="notice" style="margin-top:20px"><svg class="icon" style="vertical-align:middle;margin-right:5px"><use href="#i-info"/></svg>Ngừng sử dụng chỉ ẩn loại bia khi tạo phiếu mới. Lịch sử và số tồn vẫn được giữ nguyên. Bạn có thể sử dụng lại bất cứ lúc nào.</div>
+    </section>
+    <section id="page-backup" aria-label="Sao lưu dữ liệu" hidden>
+      <div class="page-heading"><div><p class="eyebrow">DỮ LIỆU CỦA BẠN</p><h1>Sao lưu & khôi phục</h1><p class="subtitle">Giữ một bản sao an toàn, chuyển kho sang thiết bị khác dễ dàng.</p></div></div>
+      <div class="backup-grid"><section class="panel backup-card"><div class="panel-body"><div class="backup-icon"><svg class="icon"><use href="#i-save"/></svg></div><h2>Sao lưu toàn bộ kho</h2><p>Tải file JSON chứa danh mục bia, tồn đầu kỳ và toàn bộ phiếu nhập xuất. Dùng file này để khôi phục đầy đủ.</p><button class="btn primary" id="export-json">Tải bản sao JSON</button><p class="small" id="backup-summary" style="margin:12px 0 0"></p><p class="small" id="last-backup" style="margin:6px 0 0"></p></div></section><section class="panel backup-card"><div class="panel-body"><div class="backup-icon"><svg class="icon"><use href="#i-file"/></svg></div><h2>Khôi phục từ bản sao</h2><p>Chọn file JSON đã xuất từ Kho Bia. Hệ thống sẽ kiểm tra dữ liệu và số tồn trước khi cho phép khôi phục.</p><button class="btn" id="import-json">Chọn file JSON</button><input type="file" id="import-file" accept=".json,application/json" hidden><p class="small" style="margin:12px 0 0">Khôi phục sẽ thay thế toàn bộ dữ liệu hiện có. Hãy sao lưu trước khi thực hiện.</p></div></section></div>
+      <section class="panel backup-info"><svg class="icon"><use href="#i-shield"/></svg><div><h2>Dữ liệu lưu riêng trên trình duyệt của bạn</h2><p>Không cần tài khoản, không gửi dữ liệu kho lên máy chủ. Tải lại trang hay đóng trình duyệt thông thường vẫn giữ dữ liệu.</p><ul><li>Nên tải bản sao JSON sau mỗi ngày làm việc.</li><li>Xóa dữ liệu trình duyệt hoặc dùng chế độ ẩn danh có thể làm mất sổ kho.</li><li>Dữ liệu không tự đồng bộ giữa các trình duyệt hoặc thiết bị. Dùng JSON để chuyển dữ liệu.</li><li>CSV dành để xem trên Excel; JSON dành để khôi phục kho.</li></ul><button class="btn link" id="backup-csv" style="margin-top:14px">Xuất toàn bộ lịch sử CSV</button></div></section>
+    </section>
+    <footer><span>Kho Bia · Gọn việc kho, rõ từng thùng.</span><span>Dữ liệu lưu trên trình duyệt <span aria-hidden="true">·</span> <button id="open-help">Hướng dẫn sử dụng</button></span></footer>
+  </main>
+  <dialog id="product-dialog" aria-labelledby="product-dialog-title"><form id="product-form"><div class="dialog-head"><h2 id="product-dialog-title">Thêm loại bia</h2><button class="icon-btn" type="button" data-close="product-dialog" aria-label="Đóng"><svg class="icon"><use href="#i-close"/></svg></button></div><div class="dialog-body"><div id="product-error" class="form-error" role="alert" hidden></div><div class="field"><label for="product-name">Tên loại bia</label><input id="product-name" maxlength="80" required placeholder="Ví dụ: Tiger Crystal" autocomplete="off"></div><div class="field-row"><div class="field"><label for="product-initial">Tồn đầu kỳ (thùng)</label><input id="product-initial" type="number" min="0" step="1" max="9007199254740991" required value="0"></div><div class="field"><label for="product-date">Ngày bắt đầu</label><input id="product-date" type="date" min="1900-01-01" max="9999-12-31" required></div></div><p class="field-hint">Tồn đầu kỳ là số thùng có sẵn trước các giao dịch của ngày bắt đầu, không tính là phiếu nhập. Phiếu giao dịch phải từ ngày này trở đi.</p></div><div class="dialog-actions"><button class="btn" type="button" data-close="product-dialog">Hủy</button><button class="btn primary" type="submit">Lưu loại bia</button></div></form></dialog>
+  <dialog id="confirm-dialog" aria-labelledby="confirm-title"><div class="dialog-head"><h2 id="confirm-title">Xác nhận</h2><button class="icon-btn" type="button" data-close="confirm-dialog" aria-label="Đóng"><svg class="icon"><use href="#i-close"/></svg></button></div><div class="dialog-body"><p class="confirm-copy" id="confirm-copy"></p><div id="confirm-error" class="form-error" style="margin:16px 0 0" role="alert" hidden></div></div><div class="dialog-actions"><button class="btn" type="button" data-close="confirm-dialog" autofocus>Hủy</button><button class="btn primary" type="button" id="confirm-action">Xác nhận</button></div></dialog>
+  <dialog id="help-dialog" aria-labelledby="help-title"><div class="dialog-head"><h2 id="help-title">Bắt đầu trong một phút</h2><button class="icon-btn" type="button" data-close="help-dialog" aria-label="Đóng"><svg class="icon"><use href="#i-close"/></svg></button></div><div class="dialog-body"><ol class="help-list"><li>Vào <strong>Danh mục bia</strong>, thêm loại bia và khai báo tồn đầu kỳ cùng ngày bắt đầu.</li><li>Chọn <strong>Nhập kho</strong> hoặc <strong>Xuất kho</strong>, nhập ngày, loại bia và số thùng. Có thể thêm nhiều dòng rồi lưu một phiếu.</li><li>Xem số dư <strong>cuối ngày</strong> tại Tổng quan. Cùng một ngày, toàn bộ nhập được tính trước xuất.</li><li>Vào <strong>Lịch sử nhập xuất</strong> để lọc, sửa hoặc xóa phiếu. Phiếu có nhiều dòng được sửa hoặc xóa cùng nhau.</li><li>Cuối ngày, tải <strong>bản sao JSON</strong>. Dùng CSV nếu cần xem lịch sử trong Excel.</li></ol></div><div class="dialog-actions"><button class="btn primary" data-close="help-dialog">Đã hiểu</button></div></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
 <script id="inventory-core">
 'use strict';
 // Tồn kho là số dư cuối ngày; cùng ngày tính toàn bộ nhập trước toàn bộ xuất.
@@ -123,6 +212,386 @@ globalThis.Inventory = (() => {
   }
   const empty = () => ({ version: VERSION, products: [], transactions: [] });
   return { VERSION, today, dateValid, quantityValid, validate, snapshot, filterTransactions, csv, empty };
+})();
+</script>
+<script id="inventory-app">
+'use strict';
+(() => {
+  const I = Inventory;
+  const STORAGE_KEY = 'kho-bia.data.v1';
+  const BACKUP_KEY = 'kho-bia.last-backup.v1';
+  const $ = id => document.getElementById(id);
+  const esc = value => String(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const icon = name => `<svg class="icon" aria-hidden="true"><use href="#i-${name}"/></svg>`;
+  const format = number => new Intl.NumberFormat('vi-VN').format(number);
+  const dateText = date => date.split('-').reverse().join('/');
+  const id = () => globalThis.crypto?.randomUUID?.() || `id-${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
+  let state = I.empty(), currentRaw = null, storageProblem = '', readUnavailable = false;
+  let page = 'overview', transactionType = 'in', editingId = null, editingOriginal = null, editingProductId = null, editingProductOriginal = null;
+  let historyPage = 1, toastTimer, confirmCallback = null;
+  const PAGE_SIZE = 30;
+
+  function notify(message, error = false) {
+    clearTimeout(toastTimer);
+    $('toast').textContent = message;
+    $('toast').classList.toggle('error', error);
+    $('toast').hidden = false;
+    toastTimer = setTimeout(() => { $('toast').hidden = true; }, error ? 6500 : 3500);
+  }
+  function showError(target, message) {
+    $(target).textContent = message;
+    $(target).hidden = !message;
+  }
+  function readStorage() {
+    readUnavailable = false;
+    try { currentRaw = localStorage.getItem(STORAGE_KEY); }
+    catch { readUnavailable = true; storageProblem = 'Trình duyệt không cho truy cập LocalStorage. Hãy bật quyền lưu dữ liệu hoặc mở bằng trình duyệt thông thường. Chưa thể lưu phiếu trên thiết bị này.'; return; }
+    try { state = currentRaw === null ? I.empty() : I.validate(JSON.parse(currentRaw)); storageProblem = ''; }
+    catch { state = I.empty(); storageProblem = 'Dữ liệu đang lưu bị lỗi hoặc không đúng định dạng. Đã khóa thao tác ghi để giữ nguyên bản gốc. Tải dữ liệu gốc bên dưới, sau đó khôi phục từ file JSON hợp lệ trong mục Sao lưu dữ liệu.'; }
+  }
+  function renderStorageStatus() {
+    $('storage-warning').hidden = !storageProblem;
+    $('storage-warning').innerHTML = storageProblem ? `<strong>Chưa thể sử dụng sổ kho</strong><p>${esc(storageProblem)}</p>${!readUnavailable && currentRaw !== null ? '<button class="btn" id="download-raw">Tải dữ liệu gốc để kiểm tra</button>' : ''}` : '';
+    $('download-raw')?.addEventListener('click', () => download(currentRaw, 'kho-bia-du-lieu-goc.txt', 'text/plain;charset=utf-8'));
+    $('local-status').innerHTML = `${icon(storageProblem ? 'info' : 'shield')}<span>${storageProblem ? 'Cần kiểm tra lưu trữ' : 'Lưu trên thiết bị này'}</span>`;
+  }
+  // Chỉ thay đổi giao diện sau khi ghi thành công; so sánh bản gốc để tránh ghi đè tab khác.
+  function persist(next, restoring = false) {
+    if (readUnavailable || (storageProblem && !restoring)) throw new Error(storageProblem);
+    const clean = I.validate(next);
+    let latest;
+    try { latest = localStorage.getItem(STORAGE_KEY); }
+    catch { throw new Error('Không đọc được LocalStorage. Phiếu chưa được lưu.'); }
+    if (latest !== currentRaw) {
+      readStorage(); renderAll();
+      throw new Error('Dữ liệu đã thay đổi ở tab khác. Đã cập nhật sổ kho; hãy kiểm tra và lưu lại thao tác này.');
+    }
+    const serialized = JSON.stringify(clean);
+    try { localStorage.setItem(STORAGE_KEY, serialized); }
+    catch { throw new Error('Không lưu được dữ liệu (bộ nhớ đầy hoặc bị chặn). Thao tác chưa được áp dụng. Hãy tải bản sao JSON và kiểm tra trình duyệt.'); }
+    currentRaw = serialized; state = clean; storageProblem = '';
+    renderAll();
+  }
+  function changePage(next, scroll = true) {
+    if (!['overview', 'history', 'catalog', 'backup'].includes(next)) return;
+    page = next;
+    document.querySelectorAll('[id^="page-"]').forEach(el => { el.hidden = el.id !== `page-${page}`; });
+    document.querySelectorAll('[data-page]').forEach(el => el.setAttribute('aria-selected', String(el.dataset.page === page)));
+    if (page === 'history') renderHistory();
+    if (scroll) window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+  function initials(name) { return name.split(/\s+/).slice(0, 2).map(word => Array.from(word)[0] || '').join('').toLocaleUpperCase('vi'); }
+  function beerName(p) {
+    return `<div class="beer-name"><span class="beer-mark" aria-hidden="true">${esc(initials(p.name))}</span><div><div class="beer-text">${esc(p.name)}</div>${!p.active ? '<div class="beer-sub">Đã ngừng sử dụng</div>' : ''}</div></div>`;
+  }
+  function emptyBlock(title, description, action = '') { return `<div class="empty">${icon('box')}<h3>${esc(title)}</h3><p>${esc(description)}</p>${action}</div>`; }
+  function renderOverview() {
+    const date = I.dateValid($('snapshot-date').value) ? $('snapshot-date').value : I.today();
+    const view = I.snapshot(state, date);
+    $('today-label').textContent = new Intl.DateTimeFormat('vi-VN', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(new Date());
+    $('snapshot-caption').textContent = date === I.today() ? 'Cập nhật từ sổ nhập xuất của bạn' : `Đang xem số liệu ngày ${dateText(date)}`;
+    $('total-stock').innerHTML = `${format(view.total)} <span>thùng</span>`;
+    $('total-caption').textContent = `Tồn cuối ngày ${dateText(date)} · ${state.products.length} loại bia`;
+    $('daily-in').innerHTML = `${format(view.incoming)} <span>thùng</span>`;
+    $('daily-out').innerHTML = `${format(view.outgoing)} <span>thùng</span>`;
+    for (const type of ['in', 'out']) {
+      const count = state.transactions.filter(t => t.date === date && t.type === type).length;
+      $(type === 'in' ? 'incoming-caption' : 'outgoing-caption').textContent = `${count ? `${format(count)} phiếu ${type === 'in' ? 'nhập' : 'xuất'}` : `Chưa có phiếu ${type === 'in' ? 'nhập' : 'xuất'}`} · ${dateText(date)}`;
+    }
+    $('product-count').textContent = `${state.products.length} loại`;
+    $('stock-date-caption').textContent = `Cuối ngày ${dateText(date)} · Bao gồm loại đã ngừng dùng`;
+    $('stock-list').innerHTML = view.products.length ? `<div class="table-wrap"><table class="stock-table"><thead><tr><th scope="col">Loại bia</th><th scope="col" class="align-right">Tồn kho</th><th scope="col" class="align-right">Trạng thái</th></tr></thead><tbody>${view.products.map(p => `<tr><td>${beerName(p)}</td><td class="align-right nowrap"><span class="stock-quantity num ${p.stock === 0 ? 'zero' : ''}">${format(p.stock)}</span><span class="unit">thùng</span></td><td class="align-right"><span class="tag ${p.initialDate > date || !p.active ? 'inactive' : p.stock === 0 ? 'zero' : ''}">${p.initialDate > date ? 'Chưa bắt đầu' : !p.active ? 'Ngừng dùng' : p.stock === 0 ? 'Hết hàng' : 'Còn hàng'}</span></td></tr>`).join('')}</tbody></table></div>` : emptyBlock('Kho bia của bạn bắt đầu ở đây', 'Thêm loại bia và số thùng có sẵn. Sau đó ghi nhận nhập, xuất mỗi ngày.', '<button class="btn primary" data-add-product>Thêm loại bia đầu tiên</button>');
+    const recent = I.filterTransactions(state).slice(0, 5);
+    const byId = new Map(state.products.map(p => [p.id, p]));
+    $('recent-list').innerHTML = recent.length ? `<div class="table-wrap"><table class="recent-table"><thead><tr><th scope="col">Ngày</th><th scope="col">Loại bia</th><th scope="col" class="align-right">Số thùng</th><th scope="col" class="recent-note">Ghi chú</th></tr></thead><tbody>${recent.map(t => `<tr class="recent-row"><td class="nowrap">${dateText(t.date)}${t.date > I.today() ? '<div class="beer-sub">Phiếu tương lai</div>' : ''}</td><td><div class="beer-text">${esc(byId.get(t.items[0].productId).name)}</div>${t.items.length > 1 ? `<div class="beer-sub">và ${t.items.length - 1} loại khác</div>` : ''}</td><td class="align-right signed num ${t.type === 'out' ? 'out' : ''}">${t.type === 'in' ? '+' : '−'}${format(t.items.reduce((n, i) => n + i.quantity, 0))}</td><td class="recent-note notes-cell">${esc(t.note || '—')}</td></tr>`).join('')}</tbody></table></div>` : emptyBlock('Chưa có giao dịch', 'Những phiếu nhập và xuất sẽ xuất hiện ở đây sau khi bạn lưu.');
+  }
+  function filterValues() {
+    return { from: $('filter-from').value, to: $('filter-to').value, productId: $('filter-product').value, type: $('filter-type').value };
+  }
+  function filtersValid() {
+    const filters = filterValues();
+    const valid = (!filters.from || I.dateValid(filters.from)) && (!filters.to || I.dateValid(filters.to)) && (!filters.from || !filters.to || filters.from <= filters.to);
+    showError('filter-error', valid ? '' : 'Khoảng ngày không hợp lệ. Ngày bắt đầu phải nhỏ hơn hoặc bằng ngày kết thúc.');
+    return valid;
+  }
+  function renderHistory() {
+    const filters = filterValues();
+    if (!filtersValid()) { $('history-count').textContent = 'Vui lòng kiểm tra khoảng ngày.'; $('history-list').innerHTML = ''; $('history-pagination').hidden = true; return; }
+    const transactions = I.filterTransactions(state, filters);
+    const rows = transactions.flatMap(t => t.items.filter(item => !filters.productId || item.productId === filters.productId).map(item => ({ t, item })));
+    const totalPages = Math.max(1, Math.ceil(rows.length / PAGE_SIZE));
+    historyPage = Math.max(1, Math.min(historyPage, totalPages));
+    const shown = rows.slice((historyPage - 1) * PAGE_SIZE, historyPage * PAGE_SIZE);
+    const byId = new Map(state.products.map(p => [p.id, p]));
+    $('history-count').textContent = `${format(transactions.length)} phiếu · ${format(rows.length)} dòng chi tiết${filters.from && filters.from === filters.to ? ` · Ngày ${dateText(filters.from)}` : ''}. Sửa hoặc xóa áp dụng cho toàn bộ phiếu.`;
+    $('history-list').innerHTML = shown.length ? `<div class="table-wrap"><table class="history-table"><thead><tr><th scope="col">Ngày giao dịch</th><th scope="col">Loại bia</th><th scope="col">Hình thức</th><th scope="col" class="align-right">Nhập</th><th scope="col" class="align-right">Xuất</th><th scope="col">Ghi chú</th><th scope="col" class="align-right">Thao tác</th></tr></thead><tbody>${shown.map(({t, item}) => `<tr><td class="nowrap">${dateText(t.date)}${t.date > I.today() ? '<div class="beer-sub">Phiếu tương lai</div>' : ''}${t.items.length > 1 ? `<div class="beer-sub">Phiếu ${t.items.length} loại bia</div>` : ''}</td><td>${beerName(byId.get(item.productId))}</td><td><span class="tag ${t.type === 'out' ? 'out' : ''}">${t.type === 'in' ? 'Nhập kho' : 'Xuất kho'}</span></td><td class="align-right num qty-in">${t.type === 'in' ? '+' + format(item.quantity) : '—'}</td><td class="align-right num qty-out">${t.type === 'out' ? '−' + format(item.quantity) : '—'}</td><td class="notes-cell">${esc(t.note || '—')}</td><td><div class="row-actions"><button class="icon-btn" data-edit-transaction="${esc(t.id)}" aria-label="Sửa phiếu ${dateText(t.date)} ${esc(byId.get(item.productId).name)}" title="Sửa toàn bộ phiếu">${icon('edit')}</button><button class="icon-btn delete" data-delete-transaction="${esc(t.id)}" aria-label="Xóa phiếu ${dateText(t.date)} ${esc(byId.get(item.productId).name)}" title="Xóa toàn bộ phiếu">${icon('trash')}</button></div></td></tr>`).join('')}</tbody></table></div>` : emptyBlock(state.transactions.length ? 'Không tìm thấy giao dịch' : 'Sổ kho chưa có giao dịch', state.transactions.length ? 'Thử thay đổi bộ lọc hoặc mở rộng khoảng ngày.' : 'Tạo phiếu nhập hoặc xuất từ màn hình Tổng quan.');
+    $('history-pagination').hidden = totalPages <= 1;
+    $('history-pagination').innerHTML = `<span>Trang ${historyPage} / ${totalPages} · ${PAGE_SIZE} dòng mỗi trang</span><div class="pagination-controls"><button class="btn compact" data-history-prev ${historyPage === 1 ? 'disabled' : ''}>Trang trước</button><button class="btn compact" data-history-next ${historyPage === totalPages ? 'disabled' : ''}>Trang sau</button></div>`;
+  }
+  function renderCatalog() {
+    const products = I.snapshot(state, I.today()).products;
+    $('catalog-count').textContent = `${products.length} loại`;
+    $('catalog-list').innerHTML = products.length ? `<div class="table-wrap"><table class="catalog-table"><thead><tr><th scope="col">Loại bia</th><th scope="col" class="align-right">Tồn đầu kỳ</th><th scope="col">Ngày bắt đầu</th><th scope="col" class="align-right">Tồn hôm nay</th><th scope="col">Trạng thái</th><th scope="col" class="align-right">Thao tác</th></tr></thead><tbody>${products.map(p => `<tr><td>${beerName(p)}</td><td class="align-right num">${format(p.initialStock)}</td><td class="nowrap">${dateText(p.initialDate)}</td><td class="align-right num"><strong>${format(p.stock)}</strong></td><td><span class="tag ${p.active ? '' : 'inactive'}">${p.active ? 'Đang sử dụng' : 'Ngừng dùng'}</span></td><td><div class="row-actions"><button class="icon-btn" data-edit-product="${esc(p.id)}" aria-label="Sửa ${esc(p.name)}" title="Sửa tên và tồn đầu kỳ">${icon('edit')}</button><button class="btn compact ghost" data-toggle-product="${esc(p.id)}">${p.active ? 'Ngừng dùng' : 'Dùng lại'}</button></div></td></tr>`).join('')}</tbody></table></div>` : emptyBlock('Thêm loại bia đầu tiên', 'Khai báo tên bia, tồn đầu kỳ và ngày bạn bắt đầu theo dõi.', '<button class="btn primary" data-add-product>Thêm loại bia</button>');
+  }
+  function renderBackup() {
+    $('backup-summary').textContent = `${format(state.products.length)} loại bia · ${format(state.transactions.length)} phiếu nhập xuất`;
+    try {
+      const last = localStorage.getItem(BACKUP_KEY);
+      const date = last ? new Date(last) : null;
+      $('last-backup').textContent = date && Number.isFinite(date.getTime()) ? `Lần tải bản sao gần nhất: ${date.toLocaleString('vi-VN')}` : 'Chưa tải bản sao JSON trên trình duyệt này.';
+    } catch { $('last-backup').textContent = ''; }
+  }
+  function renderFilterOptions() {
+    const selected = $('filter-product').value;
+    $('filter-product').innerHTML = '<option value="">Tất cả loại bia</option>' + state.products.map(p => `<option value="${esc(p.id)}">${esc(p.name)}${p.active ? '' : ' (ngừng dùng)'}</option>`).join('');
+    if (state.products.some(p => p.id === selected)) $('filter-product').value = selected;
+  }
+  function renderAll() {
+    renderStorageStatus(); renderOverview(); renderFilterOptions(); renderHistory(); renderCatalog(); renderBackup(); refreshEditorProducts();
+  }
+  function existingEditedTransaction() { return editingId ? state.transactions.find(t => t.id === editingId) : null; }
+  function allowedProducts() {
+    const prior = existingEditedTransaction()?.items || [];
+    return state.products.filter(p => p.active || prior.some(item => item.productId === p.id));
+  }
+  function optionsFor(selected) {
+    const allowed = allowedProducts();
+    const selectedProduct = state.products.find(p => p.id === selected);
+    if (selectedProduct && !allowed.some(p => p.id === selected)) allowed.push(selectedProduct);
+    return '<option value="">Chọn loại bia</option>' + allowed.map(p => `<option value="${esc(p.id)}" ${p.id === selected ? 'selected' : ''}>${esc(p.name)}${p.active ? '' : ' (ngừng dùng)'}</option>`).join('');
+  }
+  function addItem(item = { productId: '', quantity: '' }) {
+    if ($('transaction-items').children.length >= 500) { notify('Mỗi phiếu tối đa 500 loại bia.', true); return; }
+    const row = document.createElement('div');
+    row.className = 'item-row';
+    row.innerHTML = `<select class="item-product" aria-label="Loại bia" required>${optionsFor(item.productId)}</select><input class="item-quantity" aria-label="Số thùng" type="number" min="1" step="1" max="9007199254740991" required placeholder="0" value="${esc(item.quantity)}"><button class="icon-btn delete" type="button" data-remove-item aria-label="Xóa dòng bia" title="Xóa dòng">${icon('close')}</button><div class="line-help"></div>`;
+    $('transaction-items').append(row);
+    updateEditor();
+  }
+  function refreshEditorProducts() {
+    document.querySelectorAll('.item-product').forEach(select => { const selected = select.value; select.innerHTML = optionsFor(selected); });
+    $('no-products').hidden = allowedProducts().length > 0;
+    $('save-transaction').disabled = allowedProducts().length === 0 || !!storageProblem;
+    $('add-item').disabled = allowedProducts().length === 0 || !!storageProblem;
+    updateEditor();
+  }
+  function updateEditor() {
+    const date = $('transaction-date').value;
+    const base = { ...state, transactions: state.transactions.filter(t => t.id !== editingId) };
+    const balances = I.dateValid(date) ? I.snapshot(base, date).products : [];
+    let total = 0;
+    document.querySelectorAll('.item-row').forEach(row => {
+      const p = balances.find(p => p.id === row.querySelector('select').value);
+      const q = Number(row.querySelector('input').value);
+      if (I.quantityValid(q)) total += q;
+      row.querySelector('.line-help').textContent = p ? p.initialDate > date ? `Bắt đầu theo dõi từ ${dateText(p.initialDate)}` : `Tồn cuối ngày ${dateText(date)}: ${format(p.stock)} thùng${editingId ? ' (chưa tính phiếu đang sửa)' : ''}` : '';
+    });
+    $('editor-total').textContent = `${Number.isSafeInteger(total) ? format(total) : 'Vượt giới hạn'} thùng`;
+    $('transaction-date-hint').textContent = date > I.today() ? 'Phiếu tương lai: số tồn hôm nay chưa thay đổi khi lưu.' : 'Có thể chọn ngày trước đó để bổ sung sổ kho.';
+    document.querySelectorAll('[data-remove-item]').forEach(button => { button.disabled = $('transaction-items').children.length <= 1; });
+  }
+  function setType(type) {
+    transactionType = type;
+    document.querySelectorAll('[data-type]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.type === type)));
+    $('save-transaction-label').textContent = `${editingId ? 'Lưu thay đổi phiếu' : 'Lưu phiếu'} ${type === 'in' ? 'nhập' : 'xuất'}`;
+    $('save-transaction').classList.toggle('outgoing', type === 'out');
+    $('save-transaction').classList.toggle('primary', type === 'in');
+  }
+  function resetEditor(type = transactionType) {
+    editingId = null; editingOriginal = null;
+    $('transaction-form').reset(); $('transaction-date').value = I.today();
+    $('transaction-items').innerHTML = ''; addItem();
+    $('editor-title').textContent = 'Tạo phiếu nhanh';
+    $('editor-subtitle').textContent = 'Nhập nhiều loại bia trong một lần';
+    $('cancel-edit').hidden = true; showError('transaction-error', '');
+    setType(type); refreshEditorProducts();
+  }
+  function focusEditor() {
+    changePage('overview', false);
+    $('quick-panel').scrollIntoView({ behavior: 'instant', block: 'start' });
+    $('transaction-date').focus({ preventScroll: true });
+  }
+  function confirmAction(title, copy, label, callback, danger = false) {
+    $('confirm-title').textContent = title; $('confirm-copy').textContent = copy; $('confirm-action').textContent = label;
+    $('confirm-action').className = `btn ${danger ? 'danger' : 'primary'}`;
+    showError('confirm-error', ''); confirmCallback = callback;
+    $('confirm-dialog').showModal();
+  }
+  function newTransaction(type) {
+    const hasDraft = editingId || $('transaction-note').value.trim() || [...document.querySelectorAll('.item-row')].some(row => row.querySelector('select').value || row.querySelector('input').value);
+    const start = () => { resetEditor(type); focusEditor(); };
+    if (hasDraft) confirmAction('Tạo phiếu mới?', 'Nội dung phiếu đang nhập chưa được lưu. Bỏ nội dung này để tạo phiếu mới?', 'Tạo phiếu mới', start);
+    else start();
+  }
+  function editTransaction(transactionId) {
+    const t = state.transactions.find(t => t.id === transactionId);
+    if (!t) return;
+    const begin = () => {
+      editingId = t.id; editingOriginal = JSON.stringify(t);
+      $('transaction-date').value = t.date; $('transaction-note').value = t.note;
+      $('transaction-items').innerHTML = ''; t.items.forEach(addItem);
+      $('editor-title').textContent = 'Chỉnh sửa phiếu';
+      $('editor-subtitle').textContent = `Ngày ${dateText(t.date)} · ${t.items.length} loại bia`;
+      $('cancel-edit').hidden = false; showError('transaction-error', '');
+      setType(t.type); refreshEditorProducts(); focusEditor();
+    };
+    const hasDraft = editingId || $('transaction-note').value.trim() || [...document.querySelectorAll('.item-row')].some(row => row.querySelector('select').value || row.querySelector('input').value);
+    if (hasDraft) confirmAction('Mở phiếu để chỉnh sửa?', 'Nội dung phiếu đang nhập chưa được lưu. Bỏ nội dung này để chỉnh sửa phiếu đã chọn?', 'Mở phiếu', begin);
+    else begin();
+  }
+  function openProduct(productId = null) {
+    const p = state.products.find(p => p.id === productId);
+    editingProductId = p?.id || null; editingProductOriginal = p ? JSON.stringify(p) : null;
+    $('product-dialog-title').textContent = p ? 'Chỉnh sửa loại bia' : 'Thêm loại bia';
+    $('product-name').value = p?.name || '';
+    $('product-initial').value = p?.initialStock ?? 0;
+    $('product-date').value = p?.initialDate || I.today();
+    showError('product-error', ''); $('product-dialog').showModal();
+    $('product-name').focus();
+  }
+  function download(content, filename, type) {
+    const url = URL.createObjectURL(new Blob([content], { type }));
+    const anchor = document.createElement('a');
+    anchor.href = url; anchor.download = filename; document.body.append(anchor); anchor.click(); anchor.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+  function exportJSON() {
+    if (storageProblem) { notify('Dữ liệu hiện có chưa đọc được. Hãy tải dữ liệu gốc trong thông báo phía trên.', true); return; }
+    download(JSON.stringify({ ...state, exportedAt: new Date().toISOString() }, null, 2), `kho-bia-sao-luu-${I.today()}-${Date.now()}.json`, 'application/json;charset=utf-8');
+    try { localStorage.setItem(BACKUP_KEY, new Date().toISOString()); } catch { /* Bản sao vẫn đã được tải nếu không lưu được mốc thời gian. */ }
+    renderBackup(); notify('Đã tạo file sao lưu JSON. Hãy giữ file ở nơi an toàn.');
+  }
+  function exportCSV(filtered = true) {
+    if (storageProblem) { notify('Dữ liệu đang lưu cần được kiểm tra trước khi xuất.', true); return; }
+    if (filtered && !filtersValid()) { notify('Vui lòng kiểm tra khoảng ngày trước khi xuất CSV.', true); return; }
+    download(I.csv(state, filtered ? filterValues() : {}), `kho-bia-lich-su-${I.today()}.csv`, 'text/csv;charset=utf-8');
+    notify(filtered ? 'Đã xuất CSV theo bộ lọc hiện tại.' : 'Đã xuất toàn bộ lịch sử CSV.');
+  }
+
+  $('transaction-form').addEventListener('submit', event => {
+    event.preventDefault(); showError('transaction-error', '');
+    try {
+      if (editingId && JSON.stringify(existingEditedTransaction()) !== editingOriginal) throw new Error('Phiếu này đã bị thay đổi hoặc xóa ở tab khác. Hãy mở lại phiếu từ lịch sử.');
+      const allowed = new Set(allowedProducts().map(p => p.id));
+      const items = [...document.querySelectorAll('.item-row')].map(row => ({ productId: row.querySelector('select').value, quantity: Number(row.querySelector('input').value) }));
+      if (items.some(item => !allowed.has(item.productId))) throw new Error('Không thể tạo phiếu cho loại bia đã ngừng dùng. Hãy bật sử dụng lại trong danh mục.');
+      const t = { id: editingId || id(), date: $('transaction-date').value, type: transactionType, items, note: $('transaction-note').value };
+      const edited = !!editingId;
+      const next = { ...state, transactions: edited ? state.transactions.map(old => old.id === editingId ? t : old) : [...state.transactions, t] };
+      persist(next);
+      resetEditor();
+      notify(edited ? 'Đã cập nhật phiếu và tính lại tồn kho.' : `Đã lưu phiếu ${t.type === 'in' ? 'nhập' : 'xuất'} kho.`);
+    } catch (error) { showError('transaction-error', error.message); $('transaction-error').scrollIntoView({ block: 'nearest' }); }
+  });
+  $('product-form').addEventListener('submit', event => {
+    event.preventDefault();
+    try {
+      const existing = state.products.find(p => p.id === editingProductId);
+      if (editingProductId && JSON.stringify(existing) !== editingProductOriginal) throw new Error('Loại bia này đã thay đổi ở tab khác. Hãy đóng cửa sổ và mở lại để chỉnh sửa.');
+      const p = { id: editingProductId || id(), name: $('product-name').value.trim(), initialStock: Number($('product-initial').value), initialDate: $('product-date').value, active: existing?.active ?? true };
+      const products = editingProductId ? state.products.map(old => old.id === editingProductId ? p : old) : [...state.products, p];
+      const wasEmpty = state.products.length === 0;
+      persist({ ...state, products }); $('product-dialog').close();
+      if (wasEmpty && page === 'overview') { document.querySelector('.item-product').value = p.id; updateEditor(); }
+      notify(existing ? 'Đã cập nhật loại bia và tính lại tồn kho.' : 'Đã thêm loại bia. Bạn có thể tạo phiếu ngay.');
+    } catch (error) { showError('product-error', error.message); }
+  });
+  $('confirm-action').addEventListener('click', () => {
+    try { const action = confirmCallback; if (action) action(); $('confirm-dialog').close(); }
+    catch (error) { showError('confirm-error', error.message); }
+  });
+  $('confirm-dialog').addEventListener('close', () => { confirmCallback = null; });
+  $('transaction-items').addEventListener('input', updateEditor);
+  $('transaction-items').addEventListener('change', () => { showError('transaction-error', ''); updateEditor(); });
+  $('transaction-date').addEventListener('change', () => { showError('transaction-error', ''); updateEditor(); });
+  $('add-item').addEventListener('click', () => { addItem(); $('transaction-items').lastElementChild.querySelector('select').focus(); });
+  $('cancel-edit').addEventListener('click', () => confirmAction('Hủy chỉnh sửa?', 'Bỏ các thay đổi chưa lưu của phiếu này?', 'Hủy chỉnh sửa', () => resetEditor()));
+  $('snapshot-date').addEventListener('change', () => {
+    if (!I.dateValid($('snapshot-date').value)) { $('snapshot-date').value = I.today(); notify('Ngày không hợp lệ, đã trở về hôm nay.', true); }
+    renderOverview();
+  });
+  $('snapshot-today').addEventListener('click', () => { $('snapshot-date').value = I.today(); renderOverview(); });
+  $('history-filters').addEventListener('submit', event => event.preventDefault());
+  $('history-filters').addEventListener('change', () => { historyPage = 1; renderHistory(); });
+  $('history-filters').addEventListener('reset', () => setTimeout(() => { historyPage = 1; renderHistory(); }, 0));
+  $('add-product').addEventListener('click', () => openProduct());
+  $('add-first-product').addEventListener('click', () => openProduct());
+  $('export-json').addEventListener('click', exportJSON);
+  $('import-json').addEventListener('click', () => $('import-file').click());
+  $('history-csv').addEventListener('click', () => exportCSV());
+  $('backup-csv').addEventListener('click', () => exportCSV(false));
+  $('open-help').addEventListener('click', () => $('help-dialog').showModal());
+  $('import-file').addEventListener('change', async event => {
+    const file = event.target.files[0]; event.target.value = '';
+    if (!file) return;
+    try {
+      if (file.size > 20 * 1024 * 1024) throw new Error('File vượt quá 20 MB. Hãy chọn bản sao JSON của Kho Bia.');
+      let parsed;
+      try { parsed = JSON.parse((await file.text()).replace(/^\uFEFF/, '')); }
+      catch { throw new Error('Không đọc được file JSON. Dữ liệu hiện tại được giữ nguyên.'); }
+      const imported = I.validate(parsed);
+      const balance = I.snapshot(imported, I.today());
+      const expectedRaw = currentRaw;
+      confirmAction('Khôi phục dữ liệu kho?', `File: ${file.name}\n${imported.products.length} loại bia · ${imported.transactions.length} phiếu\nTồn cuối hôm nay: ${format(balance.total)} thùng\n\nToàn bộ dữ liệu hiện tại và phiếu đang nhập sẽ được thay thế. Hãy chắc chắn bạn đã tải bản sao trước khi tiếp tục.`, 'Khôi phục dữ liệu', () => {
+        if (currentRaw !== expectedRaw) throw new Error('Dữ liệu đã thay đổi trong lúc chờ khôi phục. Hãy hủy và chọn lại file để kiểm tra.');
+        persist(imported, true); resetEditor(); historyPage = 1;
+        $('snapshot-date').value = I.today(); renderAll(); notify('Đã khôi phục dữ liệu và kiểm tra tồn kho.');
+      }, true);
+    } catch (error) { notify(error.message, true); }
+  });
+  document.addEventListener('click', event => {
+    const button = event.target.closest('button');
+    if (!button || button.disabled) return;
+    if (button.dataset.page) changePage(button.dataset.page);
+    if (button.dataset.go) changePage(button.dataset.go);
+    if (button.hasAttribute('data-add-product')) openProduct();
+    if (button.dataset.type) { setType(button.dataset.type); showError('transaction-error', ''); }
+    if (button.dataset.newType) newTransaction(button.dataset.newType);
+    if (button.dataset.close) $(button.dataset.close).close();
+    if (button.hasAttribute('data-remove-item') && $('transaction-items').children.length > 1) { button.closest('.item-row').remove(); updateEditor(); }
+    if (button.dataset.editTransaction) editTransaction(button.dataset.editTransaction);
+    if (button.dataset.editProduct) openProduct(button.dataset.editProduct);
+    if (button.dataset.deleteTransaction) {
+      const t = state.transactions.find(t => t.id === button.dataset.deleteTransaction);
+      if (!t) return;
+      const original = JSON.stringify(t);
+      confirmAction('Xóa toàn bộ phiếu?', `Phiếu ${t.type === 'in' ? 'nhập' : 'xuất'} ngày ${dateText(t.date)} gồm ${t.items.length} loại bia. Tồn kho sẽ được tính lại.\n\nThao tác này không thể hoàn tác; bạn có thể khôi phục nếu đã sao lưu JSON.`, 'Xóa phiếu', () => {
+        if (JSON.stringify(state.transactions.find(old => old.id === t.id)) !== original) throw new Error('Phiếu đã thay đổi ở tab khác. Hãy hủy và kiểm tra lại lịch sử.');
+        persist({ ...state, transactions: state.transactions.filter(old => old.id !== t.id) });
+        if (editingId === t.id) resetEditor();
+        notify('Đã xóa phiếu và tính lại tồn kho.');
+      }, true);
+    }
+    if (button.dataset.toggleProduct) {
+      const p = state.products.find(p => p.id === button.dataset.toggleProduct);
+      if (!p) return;
+      try {
+        persist({ ...state, products: state.products.map(old => old.id === p.id ? { ...old, active: !p.active } : old) });
+        notify(p.active ? `Đã ngừng sử dụng ${p.name}.` : `Đã bật sử dụng lại ${p.name}.`);
+      } catch (error) { notify(error.message, true); }
+    }
+    if (button.hasAttribute('data-history-prev')) { historyPage--; renderHistory(); }
+    if (button.hasAttribute('data-history-next')) { historyPage++; renderHistory(); }
+  });
+  document.querySelector('.brand').addEventListener('click', event => { event.preventDefault(); changePage('overview'); });
+  window.addEventListener('storage', event => {
+    if (event.key === STORAGE_KEY || event.key === null) {
+      readStorage(); renderAll();
+      notify('Sổ kho đã cập nhật từ tab khác. Nội dung phiếu đang nhập được giữ lại, hãy kiểm tra trước khi lưu.', true);
+    }
+    if (event.key === BACKUP_KEY) renderBackup();
+  });
+  let lastToday = I.today();
+  window.addEventListener('focus', () => {
+    const nextToday = I.today();
+    if (nextToday !== lastToday) {
+      if ($('snapshot-date').value === lastToday) $('snapshot-date').value = nextToday;
+      if (!editingId && $('transaction-date').value === lastToday) $('transaction-date').value = nextToday;
+      lastToday = nextToday; renderAll();
+    }
+  });
+  readStorage(); $('snapshot-date').value = I.today();
+  resetEditor('in'); renderAll();
 })();
 </script>
 </body>
