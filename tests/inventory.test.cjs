@@ -102,3 +102,8 @@ test('Đổi tồn đầu kỳ cũng phải kiểm tra toàn bộ lịch sử', 
   const data = fixture(); data.products[1].initialStock = 2;
   assert.throws(() => I.validate(data), /Heineken thiếu 1/);
 });
+test('Tồn gần giới hạn an toàn không phụ thuộc thứ tự lưu phiếu', () => {
+  const max = Number.MAX_SAFE_INTEGER;
+  const data = { version: 1, products: [product('Tiger', max)], transactions: [tx('in', '2026-11-03', 'in', 'Tiger', max), tx('out', '2026-11-02', 'out', 'Tiger', max)] };
+  assert.equal(I.snapshot(I.validate(data), '2026-11-03').total, max);
+});
